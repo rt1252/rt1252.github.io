@@ -21,7 +21,16 @@
         <p class="mb-0"> This site is still under construction please be patient</a>.</p>
     </div>
 
+    
+
   <p>Hello, world!</p>
+
+  <div id="navbar"></div>
+    <script>
+      fetch('/navbar.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('navbar').innerHTML = data);
+    </script> 
 
 </body>
 
