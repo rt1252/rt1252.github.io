@@ -89,7 +89,7 @@
       .catch(error => console.error('Error fetching navbar:', error));
 
     // Wait for all promises to resolve
-    Promise.all([fetch('/alertbox.html'), fetch('/navbar.html')])
+    Promise.all(fetch('/navbar.html')])
       .then(() => {
         console.log("All resources fetched successfully");
       }).catch(error => console.error('Failed to fetch one or both resources:', error));
