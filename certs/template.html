@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="../bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap.min.css">
 </head>
 
 <body>
@@ -54,12 +54,40 @@
     }).catch(error => console.error('Failed to fetch one or both resources:', error));
   </script> 
 
-    <h1 style="margin-left: 20px; margin-top: 20px">Certification Articles</h1>
-    <h4 style="margin-left: 20px;">These are all certifications that I have taken and passed.</h4>
-    <h4 style="margin-left: 20px;">Each article will contain study materials and a short review of the exam.</h4>
-    <p style="margin-left: 20px; margin-top: 20px">Certification taken in order from most recent at the top to the oldest at the bottom.</p>
-    <ul style="margin-left: 20px; margin-top: 20px">
-        <li><a href="/certs/SAL1.html">TryHackMe's SAL1</a></li>
+<div class="container">
+    <h1 style="margin-top: 20px">Exam Name</h1>
+    
+    <div class="row">
+      <!-- Left Side: Quick Info -->
+      <div class="col-md-6">
+        <h2>Quick Info</h2>
+        <ul>
+          <li>Official link: <a href="https://tryhackme.com/certification/security-analyst-level-1" target="_blank">https://tryhackme.com/certification/security-analyst-level-1</a></li>
+          <li>Study time for me &lt; 3 hours</li>
+          <li>Exam time ~5 hours</li>
+          <li>Exam cost for me $0 (free upon release for cysa+ & btl1 holders)</li>
+          <li>Difficulty: 4/10 (see background)</li>
+        </ul>
+      </div>
+      
+      <!-- Right Side: Jump to Sections -->
+      <div class="col-md-6">
+        <div class="list-group">
+          <h2 style="margin-bottom: 10px;">Jump to Sections</h2>
+          <a href="#" class="list-group-item list-group-item-action active">Cras justo odio</a>
+          <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+          <a href="#" class="list-group-item list-group-item-action disabled">Morbi leo risus</a>
+        </div>
+      </div>
+    </div>
+    <h2>Background Information</h2>
+    <h2>Study Materials</h2>
+    <h2>Exam Experience</h2>
+    <h2>Exam Review</h2>
+  </div>
+  
+
+      
     
 </body>
 
