@@ -17,21 +17,6 @@
 
 <body>
 
-  <div id="alertbox"></div>
-  <script>
-    console.log("Fetching alertbox...");
-    fetch('/alertbox.html')
-      .then(response => {
-        console.log("Alertbox fetched successfully");
-        return response.text();
-      })
-      .then(data => {
-        console.log("Populating alertbox");
-        document.getElementById('alertbox').innerHTML = data;
-      })
-      .catch(error => console.error('Error fetching alertbox:', error));
-  </script>
-
   <div id="navbar"></div>
   <script>
     console.log("Fetching navbar...");
