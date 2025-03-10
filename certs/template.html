@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="/bootstrap.min.css">
 
   <style>
-    /* Wrapper for the jump-to-sections list group with fixed position for larger screens */
+    /* Default wrapper for the jump-to-sections list group with fixed position for larger screens */
     .fixed-sidebar-wrapper {
       position: fixed;
       top: 120px;  /* Adjust this based on your navbar height */
@@ -19,12 +19,53 @@
       width: 250px; /* Width of the fixed box */
     }
 
-    /* For smaller screens, move the jump box to a static position between Exam Name and Quick Info */
+    /* For smaller screens, move the jump box before Quick Info */
     @media (max-width: 767px) {
+      /* For mobile, we want to remove the container and use static position for the jump box */
       .fixed-sidebar-wrapper {
         position: static;
         margin-top: 20px;
         width: 100%; /* Take full width on smaller screens */
+        order: -1; /* Moves the jump box before Quick Info */
+      }
+
+      /* Make the layout a flex column for mobile view */
+      .row {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Adjust margins for better layout on small screens */
+      .col-md-6 {
+        margin-bottom: 20px;
+      }
+    }
+
+    /* For larger screens, align elements in grid layout */
+    @media (min-width: 768px) {
+      .row {
+        display: flex;
+        flex-direction: row;  /* Ensures row layout on larger screens */
+        flex-wrap: wrap;
+      }
+
+      /* Align all sections (Quick Info, Background, Study Materials, etc.) in one column */
+      .col-md-8, .col-md-4 {
+        flex: 1 1 50%;  /* Distribute space evenly between Quick Info and Jump Box */
+      }
+
+      /* Adjust spacing for the left-side Jumpbox */
+      .col-md-4 {
+        margin-left: 30px;
+      }
+
+      /* Ensure all sections take full width */
+      .col-md-8 {
+        max-width: 100%;
+      }
+
+      .col-md-4 {
+        max-width: 100%;
       }
     }
   </style>
@@ -54,65 +95,64 @@
       }).catch(error => console.error('Failed to fetch one or both resources:', error));
   </script> 
 
-<div class="container">
-    <h1 style="margin-top: 20px">Exam Name</h1>
+<!-- Start Content (no container here) -->
+  <h1 style="margin-top: 20px">Exam Name</h1>
     
-    <div class="row">
-      <!-- Left Side: Quick Info -->
-      <div class="col-md-6">
-        <h2 id="quick-info">Quick Info</h2>
-        <ul>
-          <li>Official link: <a href="https://tryhackme.com/certification/security-analyst-level-1" target="_blank">https://tryhackme.com/certification/security-analyst-level-1</a></li>
-          <li>Study time for me &lt; 3 hours</li>
-          <li>Exam time ~5 hours</li>
-          <li>Exam cost for me $0 (free upon release for cysa+ & btl1 holders)</li>
-          <li>Difficulty: 4/10 (see background)</li>
-        </ul>
-      </div>
-      
-      <!-- Right Side: Jump to Sections (Fixed Sidebar Wrapper) -->
-      <div class="col-md-6">
-        <!-- Fixed position wrapper -->
-        <div class="fixed-sidebar-wrapper">
-          <div class="list-group">
-            <h2 style="margin-bottom: 10px; margin-left: 15px;">Jump to Sections</h2>
-            <a href="#quick-info" class="list-group-item list-group-item-action active">Quick Info</a>
-            <a href="#background-info" class="list-group-item list-group-item-action">Background Info</a>
-            <a href="#study-materials" class="list-group-item list-group-item-action">Study Materials</a>
-            <a href="#exam-experience" class="list-group-item list-group-item-action">Exam Experience</a>
-            <a href="#exam-review" class="list-group-item list-group-item-action">Exam Review</a>
-          </div>
+  <div class="row">
+    <!-- Right Side: Jump to Sections (Fixed Sidebar Wrapper) -->
+    <div class="col-md-4">
+      <!-- Fixed position wrapper for larger screens, before Quick Info for mobile -->
+      <div class="fixed-sidebar-wrapper">
+        <div class="list-group">
+          <h2 style="margin-bottom: 10px; margin-left: 15px;">Jump to Sections</h2>
+          <a href="#quick-info" class="list-group-item list-group-item-action active">Quick Info</a>
+          <a href="#background-info" class="list-group-item list-group-item-action">Background Info</a>
+          <a href="#study-materials" class="list-group-item list-group-item-action">Study Materials</a>
+          <a href="#exam-experience" class="list-group-item list-group-item-action">Exam Experience</a>
+          <a href="#exam-review" class="list-group-item list-group-item-action">Exam Review</a>
         </div>
       </div>
     </div>
+
+    <!-- Left Side: Quick Info -->
+    <div class="col-md-8">
+      <h2 id="quick-info">Quick Info</h2>
+      <ul>
+        <li>Official link: <a href="https://tryhackme.com/certification/security-analyst-level-1" target="_blank">https://tryhackme.com/certification/security-analyst-level-1</a></li>
+        <li>Study time for me &lt; 3 hours</li>
+        <li>Exam time ~5 hours</li>
+        <li>Exam cost for me $0 (free upon release for cysa+ & btl1 holders)</li>
+        <li>Difficulty: 4/10 (see background)</li>
+      </ul>
+    </div>
+  </div>
     
-    <h2 id="background-info">Background Info</h2>
-    <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-      <li>5</li>
-    </ul>
+  <h2 id="background-info">Background Info</h2>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
 
-    <h2 id="study-materials">Study Materials</h2>
-    <ul>
-      <li>Material 1</li>
-      <li>Material 2</li>
-    </ul>
+  <h2 id="study-materials">Study Materials</h2>
+  <ul>
+    <li>Material 1</li>
+    <li>Material 2</li>
+  </ul>
 
-    <h2 id="exam-experience">Exam Experience</h2>
-    <ul>
-      <li>Experience 1</li>
-      <li>Experience 2</li>
-    </ul>
+  <h2 id="exam-experience">Exam Experience</h2>
+  <ul>
+    <li>Experience 1</li>
+    <li>Experience 2</li>
+  </ul>
 
-    <h2 id="exam-review">Exam Review</h2>
-    <ul>
-      <li>Review 1</li>
-      <li>Review 2</li>
-    </ul>
-</div>
+  <h2 id="exam-review">Exam Review</h2>
+  <ul>
+    <li>Review 1</li>
+    <li>Review 2</li>
+  </ul>
 
 </body>
 
