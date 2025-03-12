@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>OffSec's OSCP</title>
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/bootstrap.min.css">
+
+  <style>
+    /* Default wrapper for the jump-to-sections list group with fixed position for larger screens */
+    .fixed-sidebar-wrapper {
+      position: fixed;
+      top: 120px;  /* Adjust this based on your navbar height */
+      right: 100px;
+      width: 250px; /* Width of the fixed box */
+    }
+
+    /* For smaller screens, move the jump box before Quick Info */
+    @media (max-width: 767px) {
+      /* For mobile, we want to remove the container and use static position for the jump box */
+      .fixed-sidebar-wrapper {
+        position: static;
+        margin-top: 20px;
+        width: 100%; /* Take full width on smaller screens */
+        order: -1; /* Moves the jump box before Quick Info */
+      }
+
+      /* Make the layout a flex column for mobile view */
+      .row {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Adjust margins for better layout on small screens */
+      .col-md-6 {
+        margin-bottom: 20px;
+      }
+    }
+
+    /* For larger screens, align elements in grid layout */
+    @media (min-width: 768px) {
+      .row {
+        display: flex;
+        flex-direction: row;  /* Ensures row layout on larger screens */
+        flex-wrap: wrap;
+      }
+
+      /* Align all sections (Quick Info, Background, Study Materials, etc.) in one column */
+      .col-md-8, .col-md-4 {
+        flex: 1 1 50%;  /* Distribute space evenly between Quick Info and Jump Box */
+      }
+
+      /* Adjust spacing for the left-side Jumpbox */
+      .col-md-4 {
+        margin-left: 30px;
+      }
+
+      /* Ensure all sections take full width */
+      .col-md-8 {
+        max-width: 100%;
+      }
+
+      .col-md-4 {
+        max-width: 100%;
+      }
+    }   
+  </style>
+</head>
+
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <div id="navbar"></div>
+  <script>
+    console.log("Fetching navbar...");
+    fetch('/navbar.html')
+      .then(response => {
+        console.log("Navbar fetched successfully");
+        return response.text();
+      })
+      .then(data => {
+        console.log("Populating navbar");
+        document.getElementById('navbar').innerHTML = data;
+      })
+      .catch(error => console.error('Error fetching navbar:', error));
+
+    // Wait for all promises to resolve
+    Promise.all([
+    fetch('/navbar.html')
+])
+      .then(() => {
+        console.log("All resources fetched successfully");
+      }).catch(error => console.error('Failed to fetch one or both resources:', error));
+  </script> 
+
+<!-- Start Content (no container here) -->
+  <h1 style="margin-top: 20px; margin-left: 15px;">OffSec's OSCP PEN-200 PWK</h1>
+    
+  <div class="row">
+    <!-- Right Side: Jump to Sections (Fixed Sidebar Wrapper) -->
+    <div class="col-md-4">
+      <!-- Fixed position wrapper for larger screens, before Quick Info for mobile -->
+      <div class="fixed-sidebar-wrapper">
+        <div class="list-group">
+          <h2 style="margin-bottom: 10px; margin-left: 15px;">Jump to Sections</h2>
+          <a href="#quick-info" class="list-group-item list-group-item-action active">Quick Info</a>
+          <a href="#background-info" class="list-group-item list-group-item-action">Background Info</a>
+          <a href="#study-materials" class="list-group-item list-group-item-action">Study Materials</a>
+          <a href="#exam-experience" class="list-group-item list-group-item-action">Exam Experience</a>
+          <a href="#exam-review" class="list-group-item list-group-item-action">Exam Review</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Left Side: Quick Info -->
+    <div class="col-md-8">
+      <h2 id="quick-info" style="margin-left: 15px; margin-top: 15px">Quick Info</h2>
+      <ul style="margin-left: 25px">
+        <li>Official link: <a href="https://www.offsec.com/courses/campaigns/pen-200/" target="_blank">https://www.offsec.com/courses/campaigns/pen-200/</a></li>
+        <li>Study time for me ~350-400 hours</li>
+        <li>Exam time ~8 hours</li>
+        <li>Total exam & study materials cost $2,000 ($1,750 exam, PG $80, HTB Academy $100, prob more)</li>
+        <li>Difficulty: 7/10</li>
+        <li>Date Earned: 02/06/2025</li>
+        <li>Credential Link: <a href="https://credentials.offsec.com/9edc271b-7dbc-4a3c-a5a6-0adf10eb23d2#acc.ZLUdHbhn" target="_blank">https://credentials.offsec.com/9edc271b-7dbc-4a3c-a5a6-0adf10eb23d2#acc.ZLUdHbhn</a></a></li>
+      </ul>
+    </div>
+  </div>
+    
+  <h2 id="background-info" style="margin-left: 15px;">Background Info</h2>
+  <p style="margin-left: 25px">Having previously started my pentesting journey 15 months ago starting with eJPT; OSCP was a cert that I had on my radar for a long time.</p>
+  <p style="margin-left: 25px; margin-top: -10px">Having about a full gap year between graduating undergrad and starting work I decided this would be a good time to grind out this certification as studying everyday after work sounds exhausting.</p>
+  <p style="margin-left: 25px; margin-top: -10px">My reasoning for this exam was mainly to get on pentesting engagements with my future employer and also for future job security.</p>
+
+
+  <h2 id="study-materials" style="margin-left: 15px;">Study Materials</h2>
+  <p style="margin-left: 25px">PJPT & PNPT turned out to be very good AD experience which was certainly helpful for the exam.</p>
+  <p style="margin-left: 25px; margin-top: -10px">My main way of practicing machines was <a href="https://docs.google.com/spreadsheets/d/18weuz_Eeynr6sXFQ87Cd5F0slOj9Z6rt/edit?gid=487240997#gid=487240997" target="_blank">Lainkusanagi OSCP Like list of practice machines</a>, I completed all HTB, THM, & PG machines. You can see from my completed machine sheet that most machines I was luckily if I got a user or root level, warning the sheet contains spoilers, <a href="https://docs.google.com/spreadsheets/d/1XozpbDD511VevdUfauNfBcukAr9wWpmi/edit?usp=sharing&ouid=116720602911468126819&rtpof=true&sd=true" target="_blank">view my copy of the sheet here</a>.</p>
+  <p style="margin-left: 25px; margin-top: -10px">After purchasing the exam material, I at best skimmed through the important sections doing the occasional lab while skipping some sections entirely. HTB academy provided much better training material for a fraction of a cost of what OffSec provides, I recommend AD attacker & enumeration, linux privilege escalation, and windows privilege escalation.</p>
+  <p style="margin-left: 25px; margin-top: -10px">I enjoyed <a href="https://youtube.com/playlist?list=PL08nYpWQJ_zM4JxekcckBVjglpVWgg2u0&si=IVGdr8Vx9DgO6zsB" target="_blank">Hack the Clown's GOAD Playlist.</a> & <a href="https://youtube.com/playlist?list=PLT08J44ErMmb9qaEeTYl5diQW6jWVHCR2&si=_WUtYPDNh95x9LzN" target="_blank">Derron C's AD playlist</a> for those who enjoy studying supplemental learning via video format from channels who are entertaining and not annoying.</p>
+  <p style="margin-left: 25px; margin-top: -10px">I treated the OSCP-A,B,C challenge exams as practice the actual exam keeping track of my score and running the clock, I just didn't type the report. The standalone machines were great practice machines, the AD machines all had good initial footholds. My main complaint about the practice challenge exams is that the jump from MS02 to DC01 was the same exact thing between all three practice sets, extremely lazy design from OffSec.</p>
+  <p style="margin-left: 25px; margin-top: -10px">I tried with some of the challenge labs, secura was easily doable without hints, relia and medtech were so stupidly long and compeltly unconnected. I would not recommend anyone waste their time with any challenge machines other than secura & OSCP-A,B,C.</p>
+  <p style="margin-left: 25px; margin-top: -10px">After receiving passing scores on all three challenge exams, I decided to finally schedule the exam for a few days out.</p>
+  <p style="margin-left: 25px; margin-top: -10px">Tools that I would recommend learning are ligolo & penelope and more importantly learning how to manually spot irregularities.</p>
+
+
+  <h2 id="exam-experience" style="margin-left: 15px;">Exam Experience</h2>
+  <p style="margin-left: 25px">Can't talk about the exam too much, what I can say was I found the AD set to be extremely easy with the new assumed breach scenario, I flew through the set breaching it in 3-4 hours.</p>
+  <p style="margin-left: 25px; margin-top: -10px">One of my standalones was easy, the other was way harder than I expected (and not included anywhere in the OffSec training), and the last one I tried hours on with no initial foothold at all.</p>
+  <img src="/assets/zl.png" style="margin-left: 25px; margin-top: -10px"> 
+  <p style="margin-left: 25px; margin-top: 10px">Total score was 80/100, I think I was a little lucky with an medium difficulty exam set, I was glad that I had completed enough machines & had taken good enough notes for the one standalone.</p>
+  <p style="margin-left: 25px; margin-top: -10px"> No complains about exam stability as the VPN was stable and there were no technical issues. </p>
+  
+
+
+  <h2 id="exam-review" style="margin-left: 15px;">Exam Review</h2>
+  <p style="margin-left: 25px">Biggest complaint was how lazy the content creators were with OSCP-A,B,C copying and pasting the same exact scenario from MS02 to DC01, words cannot describe how lazy this is.</p>
+  <p style="margin-left: 25px; margin-top: -10px">I must say that it was a huge relief to pass the first time and be done with the exam. Hopefully completing this will land me good roles in the future.</p>
+</body>
+
+</html>
