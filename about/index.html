@@ -33,7 +33,6 @@
 
     // Wait for all promises to resolve
     Promise.all([
-      fetch('/alertbox.html'),
       fetch('/navbar.html')
     ]).then(() => {
       console.log("All resources fetched successfully");

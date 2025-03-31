@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>TryHackMe's SAL1</title>
+  <title>rt1252's blog</title>
   <meta name="author" content="">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,7 +67,7 @@
       .col-md-4 {
         max-width: 100%;
       }
-    }   
+    }
   </style>
 </head>
 
@@ -89,16 +89,14 @@
       .catch(error => console.error('Error fetching navbar:', error));
 
     // Wait for all promises to resolve
-    Promise.all([
-    fetch('/navbar.html')
-])
+    Promise.all(fetch('/navbar.html')])
       .then(() => {
         console.log("All resources fetched successfully");
       }).catch(error => console.error('Failed to fetch one or both resources:', error));
   </script> 
 
 <!-- Start Content (no container here) -->
-  <h1 style="margin-top: 20px; margin-left: 15px;">TryHackMe's SAL1</h1>
+  <h1 style="margin-top: 20px; margin-left: 15px;">Exam Name</h1>
     
   <div class="row">
     <!-- Right Side: Jump to Sections (Fixed Sidebar Wrapper) -->
@@ -120,39 +118,36 @@
     <div class="col-md-8">
       <h2 id="quick-info" style="margin-left: 15px; margin-top: 15px">Quick Info</h2>
       <ul style="margin-left: 25px">
-        <li>Official link: <a href="https://tryhackme.com/certification/security-analyst-level-1" target="_blank">https://tryhackme.com/certification/security-analyst-level-1</a></li>
-        <li>Study time for me &lt; 3 hours</li>
-        <li>Exam time ~5 hours</li>
-        <li>Exam cost for me $0 (free upon release for CySA+ & BTL1 holders)</li>
-        <li>Difficulty: 4/10 (see background)</li>
-        <li>Date Earned: 03/09/2025</li>
-        <li>Credential Link: <a href="https://assets.tryhackme.com/certification-certificate/67cdad5069a0d32fe1e7bc3c.pdf" target="_blank">https://assets.tryhackme.com/certification-certificate/67cdad5069a0d32fe1e7bc3c.pdf</a></a></li>
+        <li>Official link: <a href="https://certifications.tcm-sec.com/pnpt/" target="_blank">https://certifications.tcm-sec.com/pnpt/</a></li>
+        <li>Study time for me ~2 months</li>
+        <li>Exam time 5 days</li>
+        <li>Exam price $499 (no other materials needed)</li>
+        <li>Difficulty: 6/10</li>
       </ul>
     </div>
   </div>
     
   <h2 id="background-info" style="margin-left: 15px;">Background Info</h2>
-  <p style="margin-left: 25px">This is THM's first exam which simulates a SOC analyst's responsibilities.</p>
-  <p style="margin-left: 25px; margin-top: -10px">The exam consists of 80 multiple choice, then two soc simulations each two hours long.</p>
-  <p style="margin-left: 25px; margin-top: -10px">The exam is advertised to be beginner friendly & only time will tell if it holds any value in the industry, <br> unsurprisingly there are no jobs mentioning the certification on Indeed yet.</p>
+  <p style="margin-left: 25px">This is the second TCM Security exam that I have taken, I passed PJPT a few months before taking this test.</p>
+  <p style="margin-left: 25px; margin-top: -10px">This exam is a five day practical exam with two more days for reporting.</p>
 
   <h2 id="study-materials" style="margin-left: 15px;">Study Materials</h2>
-  <p style="margin-left: 25px">Already holding CompTIA certifications similar to this such as CySA+ I put only around 3 hours of studying before taking the test.</p>
-  <p style="margin-left: 25px; margin-top: -10px">I would recommend doing the Splunk modules from the recommended learning path if you have never used Splunk or need a quick refresher like myself.</p>
-  <p style="margin-left: 25px; margin-top: -10px">Additionally, use the SOC simulator and do the Phishing Unfolded challenge to get experience using the simulator <br>and see how the AI wants your case reports to look like.</p>
+  <p style="margin-left: 25px">Do not bother studying anything on this exam other than the PEH course, absolutely nothing else is required.</p>
+  <p style="margin-left: 25px; margin-top: -10px">You need to FULLY understand important topics from the course including finding external attack vectors, pivoting, and AD attacks.</p>
 
   <h2 id="exam-experience" style="margin-left: 15px;">Exam Experience</h2>
-  <p style="margin-left: 25px">First section was the multiple choice which I blew through in about half of the alloted time, these are questions like you would see on Security+ or CySA+.</p>
-  <p style="margin-left: 25px; margin-top: -10px">The SOC simulator was great, you can open multiple tabs in the environment which I found to be very helpful.</p>
-  <p style="margin-left: 25px; margin-top: -10px">I have had previous experience working in a SOC so I found the alerts to be pretty easy but make sure to be very thorough in your reports.</p>
-  <p style="margin-left: 25px; margin-top: -10px">The AI grader is looking for lots of detail including the 5Ws, any other evidence that you can mention from Splunk, and the overall big picture of why this alert matters.</p>
-  <p style="margin-left: 25px; margin-top: -10px">Only the TP case reports are graded so if you have a FP just mark as FP and write FP in the case report, you will not have time to write reports for false positives.</p>
+  <p style="margin-left: 25px">This is pretty embarrassing, failed twice at the same point because of my inability to pay attention to detail.</p>
+  <p style="margin-left: 25px; margin-top: -10px">Exam experience was very smooth no VPN or connection issues, they have support but don't expect to get anything from them.</p>
+  <p style="margin-left: 25px; margin-top: -10px">If you do a full reset on the exam expect to wait 10-20 minutes before everything is back online.</p>
+
 
   <h2 id="exam-review" style="margin-left: 15px;">Exam Review</h2>
-  <p style="margin-left: 25px">Overall the exam experience as a whole was very smooth and I did enjoy investigating the alerts in Splunk.</p>
-  <p style="margin-left: 25px; margin-top: -10px">My main critique would be not knowing exactly how the AI works, if one alert was correlated with another I found myself mentioning the correlated alert ID, <br> but then would also just copy and paste parts of the previous report because I was unsure if the AI would be smart enough to go back and read the other report that I had mentioned.</p>
-  <p style="margin-left: 25px; margin-top: -10px">I am glad that the exam does allow for breaks between sections, in the SOC sections I found myself taking up most of the two hours to ensure that I had more than enough detail.</p>
-  <p style="margin-left: 25px; margin-top: -10px">I would say this exam is better for analysts looking to break into the field rather than CySA+ (I cannot speak to BTL1 as I have not completed it), but <br>it will take time to see if this certification actually holds any value in the industry.</p>
+  <p style="margin-left: 25px">Very good foundational content for learning AD attacks, I would highly recommend the course and exam especially at the very cheap price point.</p>
+  <p style="margin-left: 25px; margin-top: -10px">The exam report portion was annoying to format in Word, but making a report with sufficient detail is another realistic portion of their exam.</p>
+  <p style="margin-left: 25px; margin-top: -10px">Luckily the exam is gaining some traction on Indeed, normally about 10 listings including it on indeed search for remote positions, it has appeared as a preferred qualification for companies like Microsoft & McDonalds.</p>
+  <img src="/assets/grimace.png" style="margin-left: 25px; margin-top: -10px"> 
+
+
 </body>
 
 </html>
