@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>rt1252's blog</title>
+  <title>TCM Security's PNPT</title>
   <meta name="author" content="">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -89,14 +89,12 @@
       .catch(error => console.error('Error fetching navbar:', error));
 
     // Wait for all promises to resolve
-    Promise.all(fetch('/navbar.html')])
-      .then(() => {
-        console.log("All resources fetched successfully");
-      }).catch(error => console.error('Failed to fetch one or both resources:', error));
+    Promise.all([
+    fetch('/navbar.html')])
   </script> 
 
 <!-- Start Content (no container here) -->
-  <h1 style="margin-top: 20px; margin-left: 15px;">Exam Name</h1>
+  <h1 style="margin-top: 20px; margin-left: 15px;">TCM Security's PNPT</h1>
     
   <div class="row">
     <!-- Right Side: Jump to Sections (Fixed Sidebar Wrapper) -->

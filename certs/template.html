@@ -89,10 +89,8 @@
       .catch(error => console.error('Error fetching navbar:', error));
 
     // Wait for all promises to resolve
-    Promise.all(fetch('/navbar.html')])
-      .then(() => {
-        console.log("All resources fetched successfully");
-      }).catch(error => console.error('Failed to fetch one or both resources:', error));
+    Promise.all([
+    fetch('/navbar.html')])
   </script> 
 
 <!-- Start Content (no container here) -->
@@ -119,10 +117,10 @@
       <h2 id="quick-info" style="margin-left: 15px; margin-top: 15px">Quick Info</h2>
       <ul style="margin-left: 25px">
         <li>Official link: <a href="https://tryhackme.com/certification/security-analyst-level-1" target="_blank">https://tryhackme.com/certification/security-analyst-level-1</a></li>
-        <li>Study time for me &lt; 3 hours</li>
-        <li>Exam time ~5 hours</li>
-        <li>Exam cost for me $0 (free upon release for cysa+ & btl1 holders)</li>
-        <li>Difficulty: 4/10 (see background)</li>
+        <li>Study time for me </li>
+        <li>Exam time </li>
+        <li>Exam </li>
+        <li>Difficulty: </li>
       </ul>
     </div>
   </div>
