@@ -18,10 +18,10 @@
             </div>
         {{- end -}}
 
-        {{- /* Posts - Show certs instead of posts */ -}}
+        {{- /* Posts - Show most recent 5 posts from any type (articles, certs, etc.) */ -}}
         {{- if ne $posts.enable false | and .Site.RegularPages -}}
-            {{- /* Paginate */ -}}
-            {{- $pages := where .Site.RegularPages "Type" "certs" -}}
+            {{- /* Get all regular pages, sorted by date (most recent first) */ -}}
+            {{- $pages := .Site.RegularPages -}}
             {{- if .Site.Params.page.hiddenFromHomePage -}}
                 {{- $pages = where $pages "Params.hiddenfromhomepage" false -}}
             {{- else -}}
