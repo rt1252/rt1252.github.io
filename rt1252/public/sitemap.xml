@@ -1,0 +1,19 @@
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    ><url>
+            <loc>http://localhost:1313/about/</loc><lastmod>2025-11-11T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://localhost:1313/articles/</loc><lastmod>2025-11-11T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://localhost:1313/certs/</loc><lastmod>2025-11-11T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://localhost:1313/</loc><lastmod>2025-11-11T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://localhost:1313/articles/write-ups/sans-holiday-hack-2025/</loc><lastmod>2025-11-11T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://localhost:1313/articles/write-ups/</loc><lastmod>2025-11-11T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://localhost:1313/certs/red-team-operator/</loc><lastmod>2025-11-10T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://localhost:1313/certs/ccfr/</loc><lastmod>2025-07-11T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://localhost:1313/certs/sal1/</loc><lastmod>2025-03-09T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://localhost:1313/certs/oscp/</loc><lastmod>2025-02-06T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://localhost:1313/certs/pnpt/</loc><lastmod>2024-09-16T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://localhost:1313/certs/cysa-plus/</loc><lastmod>2024-01-26T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://localhost:1313/certs/security-plus/</loc><lastmod>2023-07-29T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://localhost:1313/categories/</loc></url><url>
+            <loc>http://localhost:1313/tags/</loc></url></urlset>

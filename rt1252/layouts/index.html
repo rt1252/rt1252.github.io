@@ -1,0 +1,51 @@
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+
+    <div class="page home"{{ if ne $posts.enable false }} data-home="posts"{{ end }}>
+        {{- /* Profile */ -}}
+        {{- if ne $profile.enable false -}}
+            {{- partial "home/profile.html" . -}}
+        {{- end -}}
+
+        {{- /* Content */ -}}
+        {{- if .Content -}}
+            <div class="single">
+                <div class="content" id="content">
+                    {{- dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+                </div>
+            </div>
+        {{- end -}}
+
+        {{- /* Posts - Show certs instead of posts */ -}}
+        {{- if ne $posts.enable false | and .Site.RegularPages -}}
+            {{- /* Paginate */ -}}
+            {{- $pages := where .Site.RegularPages "Type" "certs" -}}
+            {{- if .Site.Params.page.hiddenFromHomePage -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" false -}}
+            {{- else -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" "!=" true -}}
+            {{- end -}}
+            {{- $pages = $pages | first 5 -}}
+            {{- if $pages -}}
+                <h2 class="single-title" style="margin-top: 2rem; margin-bottom: 1rem;">Recent Posts</h2>
+                <div class="recent-posts">
+                    {{- range $pages -}}
+                        <div class="recent-post-item" style="padding: 0.5rem 0; border-bottom: 1px dashed rgba(128, 128, 128, 0.3);">
+                            <a href="{{ .RelPermalink }}" style="text-decoration: none; color: inherit;">
+                                <h3 class="post-title" style="margin: 0; font-size: 1.1rem; font-weight: 500;">{{ .Title | emojify }}</h3>
+                            </a>
+                            <div class="post-date" style="margin-top: 0.25rem; font-size: 0.875rem; color: rgba(128, 128, 128, 0.8);">
+                                {{- with .Site.Params.dateFormat | default "2006-01-02" | .PublishDate.Format -}}
+                                    <time datetime="{{ . }}">{{ . }}</time>
+                                {{- end -}}
+                            </div>
+                        </div>
+                    {{- end -}}
+                </div>
+            {{- end -}}
+        {{- end -}}
+    </div>
+{{- end -}}
+

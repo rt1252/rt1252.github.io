@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Write-ups on rt1252</title>
+    <link>http://localhost:1313/articles/write-ups/</link>
+    <description>Recent content in Write-ups on rt1252</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/articles/write-ups/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SANS Holiday Hack Challenge™ 2025</title>
+      <link>http://localhost:1313/articles/write-ups/sans-holiday-hack-2025/</link>
+      <pubDate>Tue, 11 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/articles/write-ups/sans-holiday-hack-2025/</guid>
+      <description>&lt;h2 id=&#34;sans-holiday-hack-challenge-2025&#34;&gt;SANS Holiday Hack Challenge™ 2025&lt;/h2&gt;&#xA;&lt;p&gt;This post will include some of my favorite challenges from the 2025 HHC.&lt;/p&gt;&#xA;&lt;h3 id=&#34;neighborhood-watch-bypass&#34;&gt;Neighborhood Watch Bypass&lt;/h3&gt;&#xA;&lt;p&gt;The challenge involves privesc from a linux box. Let&amp;rsquo;s start with everyone&amp;rsquo;s favorite sudo -l command.&#xA;&lt;a class=&#34;lightgallery&#34; href=&#34;http://localhost:1313/assets/HHC/HHC_sudo_l.png&#34; title=&#34;sudo -l&#34; data-thumbnail=&#34;/assets/HHC/HHC_sudo_l.png&#34;&gt;&#xD;&#xA;        &lt;img&#xD;&#xA;            class=&#34;lazyload&#34;&#xD;&#xA;            src=&#34;http://localhost:1313/svg/loading.min.svg&#34;&#xD;&#xA;            data-src=&#34;http://localhost:1313/assets/HHC/HHC_sudo_l.png&#34;&#xD;&#xA;            data-srcset=&#34;http://localhost:1313/assets/HHC/HHC_sudo_l.png, http://localhost:1313/assets/HHC/HHC_sudo_l.png 1.5x, http://localhost:1313/assets/HHC/HHC_sudo_l.png 2x&#34;&#xD;&#xA;            data-sizes=&#34;auto&#34;&#xD;&#xA;            alt=&#34;sudo -l&#34; width=&#34;1200&#34; /&gt;&#xD;&#xA;    &lt;/a&gt;&#xA;We can quickly see that the secure_path starts with a path that we control. Let&amp;rsquo;s view the system_status.sh to find any commands that are not shell bultin.&#xA;&lt;a class=&#34;lightgallery&#34; href=&#34;http://localhost:1313/assets/HHC/type_a.png&#34; title=&#34;type -a&#34; data-thumbnail=&#34;/assets/HHC/type_a.png&#34;&gt;&#xD;&#xA;        &lt;img&#xD;&#xA;            class=&#34;lazyload&#34;&#xD;&#xA;            src=&#34;http://localhost:1313/svg/loading.min.svg&#34;&#xD;&#xA;            data-src=&#34;http://localhost:1313/assets/HHC/type_a.png&#34;&#xD;&#xA;            data-srcset=&#34;http://localhost:1313/assets/HHC/type_a.png, http://localhost:1313/assets/HHC/type_a.png 1.5x, http://localhost:1313/assets/HHC/type_a.png 2x&#34;&#xD;&#xA;            data-sizes=&#34;auto&#34;&#xD;&#xA;            alt=&#34;type -a&#34; width=&#34;1200&#34; /&gt;&#xD;&#xA;    &lt;/a&gt;&#xA;We can see that &amp;lsquo;w&amp;rsquo; is not a shell builtin, so let&amp;rsquo;s add it to the path we control.&#xA;&lt;a class=&#34;lightgallery&#34; href=&#34;http://localhost:1313/assets/HHC/w.png&#34; title=&#34;w&#34; data-thumbnail=&#34;/assets/HHC/w.png&#34;&gt;&#xD;&#xA;        &lt;img&#xD;&#xA;            class=&#34;lazyload&#34;&#xD;&#xA;            src=&#34;http://localhost:1313/svg/loading.min.svg&#34;&#xD;&#xA;            data-src=&#34;http://localhost:1313/assets/HHC/w.png&#34;&#xD;&#xA;            data-srcset=&#34;http://localhost:1313/assets/HHC/w.png, http://localhost:1313/assets/HHC/w.png 1.5x, http://localhost:1313/assets/HHC/w.png 2x&#34;&#xD;&#xA;            data-sizes=&#34;auto&#34;&#xD;&#xA;            alt=&#34;w&#34; width=&#34;1200&#34; /&gt;&#xD;&#xA;    &lt;/a&gt;&#xA;Pretty fun and easy privesc using PATH.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

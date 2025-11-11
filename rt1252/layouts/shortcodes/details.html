@@ -1,0 +1,12 @@
+{{- $inner := .Inner | .Page.RenderString -}}
+{{- $title := .Get "title" | default "Click to expand" -}}
+{{- $open := .Get "open" | default false -}}
+<div class="details{{ if eq $open "true" }} open{{ end }}">
+    <div class="details-summary" style="cursor: pointer; font-size: 1.25rem; font-weight: bold; padding: 0.5rem 0;">
+        <i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        {{ $title }}
+    </div>
+    <div class="details-content" style="padding: 1rem 0;">
+        {{- $inner -}}
+    </div>
+</div>

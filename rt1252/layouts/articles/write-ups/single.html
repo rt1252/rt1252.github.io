@@ -1,0 +1,99 @@
+{{- define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end -}}
+
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $pagePassword := .Params.password -}}
+    
+    <div class="page single special">
+        {{- if $pagePassword -}}
+            {{- /* Password Protected Content */ -}}
+            <div id="password-protected-content" style="display: none;">
+                <h1 class="single-title animate__animated animate__pulse animate__faster">
+                    {{- .Title -}}
+                </h1>
+
+                {{- /* Subtitle */ -}}
+                {{- with $params.subtitle -}}
+                    <h2 class="single-subtitle">{{ . }}</h2>
+                {{- end -}}
+
+                {{- /* Content */ -}}
+                <div class="content" id="content">
+                    {{- dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+                </div>
+
+                {{- /* Comment */ -}}
+                {{- partial "comment.html" . -}}
+            </div>
+
+            {{- /* Password Prompt */ -}}
+            <div id="password-prompt" style="text-align: center; padding: 2rem;">
+                <h1 class="single-title">{{ .Title }}</h1>
+                <p style="margin: 1rem 0;">This content is password protected.</p>
+                <div style="max-width: 300px; margin: 0 auto;">
+                    <input type="password" id="password-input" placeholder="Enter password" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid rgba(128, 128, 128, 0.3); border-radius: 4px; background: var(--global-bg-color); color: var(--global-font-color);">
+                    <button id="password-submit" style="width: 100%; padding: 0.5rem; background: var(--global-theme-color); color: white; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+                    <p id="password-error" style="color: red; margin-top: 1rem; display: none;">Incorrect password. Please try again.</p>
+                </div>
+            </div>
+
+            <script>
+                (function() {
+                    const pagePassword = {{ $pagePassword | jsonify | safeJS }};
+                    const storageKey = 'password_' + window.location.pathname;
+                    const passwordPrompt = document.getElementById('password-prompt');
+                    const protectedContent = document.getElementById('password-protected-content');
+                    const passwordInput = document.getElementById('password-input');
+                    const passwordSubmit = document.getElementById('password-submit');
+                    const passwordError = document.getElementById('password-error');
+
+                    // Check if already authenticated
+                    if (sessionStorage.getItem(storageKey) === 'true') {
+                        passwordPrompt.style.display = 'none';
+                        protectedContent.style.display = 'block';
+                        return;
+                    }
+
+                    function checkPassword() {
+                        if (passwordInput.value === pagePassword) {
+                            sessionStorage.setItem(storageKey, 'true');
+                            passwordPrompt.style.display = 'none';
+                            protectedContent.style.display = 'block';
+                            passwordError.style.display = 'none';
+                        } else {
+                            passwordError.style.display = 'block';
+                            passwordInput.value = '';
+                            passwordInput.focus();
+                        }
+                    }
+
+                    passwordSubmit.addEventListener('click', checkPassword);
+                    passwordInput.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') {
+                            checkPassword();
+                        }
+                    });
+                })();
+            </script>
+        {{- else -}}
+            {{- /* Non-protected content */ -}}
+            <h1 class="single-title animate__animated animate__pulse animate__faster">
+                {{- .Title -}}
+            </h1>
+
+            {{- /* Subtitle */ -}}
+            {{- with $params.subtitle -}}
+                <h2 class="single-subtitle">{{ . }}</h2>
+            {{- end -}}
+
+            {{- /* Content */ -}}
+            <div class="content" id="content">
+                {{- dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+            </div>
+
+            {{- /* Comment */ -}}
+            {{- partial "comment.html" . -}}
+        {{- end -}}
+    </div>
+{{- end -}}
+

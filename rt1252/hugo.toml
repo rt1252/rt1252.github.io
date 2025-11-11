@@ -1,0 +1,95 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'rt1252'
+theme = 'LoveIt'
+
+# Params config
+[params]
+  # site default theme ["auto", "light", "dark"]
+  defaultTheme = "dark"
+
+# Header config
+[params.header]
+  desktopMode = "fixed"
+  mobileMode = "auto"
+  [params.header.title]
+    name = "rt1252"
+
+# Author config
+[params.Author]
+  name = "Raymond Truex. Views do not express my employer. Content is for educational purposes only."
+  email = ""
+  link = ""
+
+# Footer config
+[params.footer]
+  enable = true
+  custom = ""
+  hugo = true
+  copyright = true
+  author = true
+  since = 2025
+  icp = ""
+  license = ""
+
+# Home page config
+[params.home]
+  rss = 10
+  [params.home.profile]
+    enable = true
+    gravatarEmail = ""
+    avatarURL = "/assets/boss_bandit.png"
+    title = "rt1252's blog"
+    subtitle = ""
+    typeit = false
+    social = false
+    disclaimer = ""
+  [params.home.posts]
+    enable = true
+    paginate = 5
+
+[[menu.main]]
+	identifier = "certs"
+	name = "Certs"
+	url = "/certs/"
+	weight = 30
+
+[[menu.main]]
+	identifier = "articles"
+	name = "Articles"
+	url = "/articles/"
+	weight = 35
+
+[[menu.main]]
+	identifier = "write-ups"
+	name = "Labs/CTF Write-Ups"
+	url = "/articles/write-ups/"
+	parent = "articles"
+	weight = 36
+
+[[menu.main]]
+	identifier = "about"
+	name = "About"
+	url = "/about/"
+	weight = 40
+
+[[menu.main]]
+	identifier = "oscp"
+	name = "OSCP"
+	url = "/certs/oscp/"
+	parent = "certs"
+	weight = 51
+
+[[menu.main]]
+	identifier = "pnpt"
+	name = "PNPT"
+	url = "/certs/pnpt/"
+	parent = "certs"
+	weight = 52
+
+[[menu.main]]
+	identifier = "sal1"
+	name = "SAL1"
+	url = "/certs/sal1/"
+	parent = "certs"
+	weight = 53
