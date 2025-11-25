@@ -6,8 +6,15 @@
     <description>Recent content in Write-ups on rt1252</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 25 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/articles/write-ups/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hack Smarter - AD Challenge Lab: Building Magic (Easy)</title>
+      <link>http://localhost:1313/articles/write-ups/hack-smarter-building-magic/</link>
+      <pubDate>Tue, 25 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/articles/write-ups/hack-smarter-building-magic/</guid>
+      <description>&lt;h2 id=&#34;hack-smarter---ad-challenge-lab-building-magic-easy&#34;&gt;Hack Smarter - AD Challenge Lab: Building Magic (Easy)&lt;/h2&gt;&#xA;&lt;p&gt;I have been meaning to check out the &lt;a href=&#34;https://www.hacksmarter.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;Hack Smarter Labs&lt;/a&gt; for some time now, the creator of the site &lt;a href=&#34;https://www.youtube.com/@TylerRamsbey&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;Tyler Ramsbey&lt;/a&gt; provides great content and his YouTube and Discord encouraged me to get my OSCP. Today I bought his membership and did an easy lab for fun, the site is great and labs spin up in under a minute, I expected nothing less.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>SANS Holiday Hack Challenge™ 2025</title>
       <link>http://localhost:1313/articles/write-ups/sans-holiday-hack-2025/</link>
