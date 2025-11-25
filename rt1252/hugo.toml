@@ -38,7 +38,7 @@ theme = 'LoveIt'
   [params.home.profile]
     enable = true
     gravatarEmail = ""
-    avatarURL = "/assets/boss_bandit.png"
+    avatarURL = "/assets/boss-bandit.jpg"
     title = "rt1252's blog"
     subtitle = ""
     typeit = false

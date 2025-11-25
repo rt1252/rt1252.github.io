@@ -125,7 +125,7 @@ Note: I have found that the new BH Docker takes forever to clear the database if
             data-sizes="auto"
             alt="/assets/buildingmagic/04_dump_users.png" width="1200" />
     </a>
-We see that r.haggard has a SPN set which most likley means we need to Kerberoast.</p>
+We see that r.haggard has a SPN set which most likely means we need to Kerberoast.</p>
 <h2 id="r-haggard">r.haggard</h2>
 <p>We can run a Kerberoasting attack to try to identify and crack r.haggard&rsquo;s hash since this user has a SPN set.
 <code>sudo impacket-GetUserSPNs buildingmagic.local/r.widdleton:lilronron -dc-ip 10.0.27.23 -request -outputfile kerberoast_hashes.txt</code></p>

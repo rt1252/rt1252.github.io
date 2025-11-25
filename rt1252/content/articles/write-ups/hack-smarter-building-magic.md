@@ -30,7 +30,7 @@ We can check r.widdleton in BloodHound and see they are not have any interesting
 `ldapdomaindump ldap://10.0.27.23 -u 'BUILDINGMAGIC.LOCAL\r.widdleton' -p 'lilronron'`
 
 {{< image src="/assets/buildingmagic/04_dump_users.png" alt="" width="1200" linked="false" class="center-image" >}} 
-We see that r.haggard has a SPN set which most likley means we need to Kerberoast.
+We see that r.haggard has a SPN set which most likely means we need to Kerberoast.
 
 ## r.haggard {#r-haggard}
 We can run a Kerberoasting attack to try to identify and crack r.haggard's hash since this user has a SPN set.
