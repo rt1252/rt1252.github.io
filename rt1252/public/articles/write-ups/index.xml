@@ -6,8 +6,15 @@
     <description>Recent content in Write-ups on rt1252</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 26 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/articles/write-ups/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hack Smarter - Challenge Lab: Arasaka (Easy)</title>
+      <link>http://localhost:1313/articles/write-ups/hack-smarter-arasaka/</link>
+      <pubDate>Wed, 26 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/articles/write-ups/hack-smarter-arasaka/</guid>
+      <description>&lt;h2 id=&#34;hack-smarter---challenge-lab-arasaka-easy&#34;&gt;Hack Smarter - Challenge Lab: Arasaka (Easy)&lt;/h2&gt;&#xA;&lt;p&gt;This is my second day of doing Hack Smarter labs. This lab starts off suplying us with credentials like an assumed breach scenario. This box invovles ACL attacks and certificates.&lt;/p&gt;&#xA;&lt;p&gt;Jump to sections: &lt;a href=&#34;#faraday&#34; rel=&#34;&#34;&gt;faraday&lt;/a&gt; · &lt;a href=&#34;#alt.svc&#34; rel=&#34;&#34;&gt;alt.svc&lt;/a&gt; · &lt;a href=&#34;#yorinobu&#34; rel=&#34;&#34;&gt;yorinobu&lt;/a&gt; · &lt;a href=&#34;#soulkiller.svc&#34; rel=&#34;&#34;&gt;soulkiller.svc&lt;/a&gt; · &lt;a href=&#34;#the_emperor&#34; rel=&#34;&#34;&gt;the_emperor&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;faraday&#34;&gt;faraday&lt;/h2&gt;&#xA;&lt;p&gt;The first thing I like doing when landing on a box is testing the initial creds which I use nxc for.&#xA;&lt;code&gt;nxc smb 10.0.19.213 -u faraday -p hacksmarter123 --shares&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Hack Smarter - AD Challenge Lab: Building Magic (Easy)</title>
       <link>http://localhost:1313/articles/write-ups/hack-smarter-building-magic/</link>
