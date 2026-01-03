@@ -73,6 +73,9 @@ class Theme {
     initMenuMobile() {
         const $menuToggleMobile = document.getElementById('menu-toggle-mobile');
         const $menuMobile = document.getElementById('menu-mobile');
+        if (!$menuToggleMobile || !$menuMobile) {
+            return;
+        }
         $menuToggleMobile.addEventListener('click', () => {
             document.body.classList.toggle('blur');
             $menuToggleMobile.classList.toggle('active');
@@ -767,8 +770,14 @@ const themeInit = () => {
     theme.init();
 };
 
-if (document.readyState !== 'loading') {
-    themeInit();
-} else {
-    document.addEventListener('DOMContentLoaded', themeInit, false);
-}
+const initTheme = () => {
+    // Ensure DOM is fully ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', themeInit, false);
+    } else {
+        // If DOM is already loaded, use setTimeout to ensure all elements are rendered
+        setTimeout(themeInit, 0);
+    }
+};
+
+initTheme();

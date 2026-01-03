@@ -57,3 +57,40 @@
     </footer>
 {{- end -}}
 
+{{- /* Custom script to ensure mobile menu works on all pages */ -}}
+<script>
+(function() {
+    function initMobileMenu() {
+        const menuToggle = document.getElementById('menu-toggle-mobile');
+        const menuMobile = document.getElementById('menu-mobile');
+        
+        if (!menuToggle || !menuMobile) {
+            return;
+        }
+        
+        // Remove any existing event listeners by cloning the element
+        const newToggle = menuToggle.cloneNode(true);
+        menuToggle.parentNode.replaceChild(newToggle, menuToggle);
+        
+        // Add click event listener
+        newToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.body.classList.toggle('blur');
+            newToggle.classList.toggle('active');
+            menuMobile.classList.toggle('active');
+        }, false);
+    }
+    
+    // Try to initialize immediately if DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileMenu);
+    } else {
+        // DOM is already loaded, initialize immediately
+        initMobileMenu();
+    }
+    
+    // Also try after a short delay to catch any late-rendered elements
+    setTimeout(initMobileMenu, 100);
+})();
+</script>
