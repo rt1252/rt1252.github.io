@@ -106,7 +106,43 @@
             </div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.152.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2025 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;Raymond Truex. Views do not express my employer. Content is for educational purposes only.</span></div>
         </div>
-    </footer></div>
+    </footer><script>
+(function() {
+    function initMobileMenu() {
+        const menuToggle = document.getElementById('menu-toggle-mobile');
+        const menuMobile = document.getElementById('menu-mobile');
+        
+        if (!menuToggle || !menuMobile) {
+            return;
+        }
+        
+        
+        const newToggle = menuToggle.cloneNode(true);
+        menuToggle.parentNode.replaceChild(newToggle, menuToggle);
+        
+        
+        newToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.body.classList.toggle('blur');
+            newToggle.classList.toggle('active');
+            menuMobile.classList.toggle('active');
+        }, false);
+    }
+    
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileMenu);
+    } else {
+        
+        initMobileMenu();
+    }
+    
+    
+    setTimeout(initMobileMenu, 100);
+})();
+</script>
+</div>
 
         <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
                 <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>

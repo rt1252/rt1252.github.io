@@ -5,6 +5,9 @@ draft: false
 description: "Collection of articles and write-ups."
 ---
 
+## [Proxying and tunneling, made simple](/articles/tunneling/)
+
+## [My coolest finds](/articles/my-coolest-finds/)
+
 ## [Labs/CTF Write-Ups](/articles/write-ups/)
 
-Detailed technical write-ups and analysis.

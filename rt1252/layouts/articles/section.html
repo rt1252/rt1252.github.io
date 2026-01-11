@@ -21,6 +21,10 @@
 
         {{- /* Paginate - Only show regular pages, not sections */ -}}
         {{- $regularPages := where .Pages "IsPage" true -}}
+        {{- /* Exclude articles that are manually linked in _index.md */ -}}
+        {{- $regularPages = where $regularPages "File.LogicalName" "!=" "my-coolest-finds.md" -}}
+        {{- $regularPages = where $regularPages "File.LogicalName" "!=" "my-coolest-finds copy.md" -}}
+        {{- $regularPages = where $regularPages "File.LogicalName" "!=" "tunneling.md" -}}
         {{- if $regularPages -}}
             {{- $pages := $regularPages -}}
             {{- with .Site.Params.section.paginate | default .Site.Params.paginate -}}

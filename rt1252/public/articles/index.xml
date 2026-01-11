@@ -6,7 +6,21 @@
     <description>Recent content in Articles on rt1252</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
+    <lastBuildDate>Sun, 11 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Proxying and tunneling, made simple</title>
+      <link>http://localhost:1313/articles/tunneling/</link>
+      <pubDate>Sun, 11 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/articles/tunneling/</guid>
+      <description>&lt;p&gt;I hate networking; the setup and everything about it gives me a headache. Hopefully this article will help simplfy some of the easier tunneling setups.&lt;/p&gt;&#xA;&lt;a class=&#34;lightgallery&#34; href=&#34;http://localhost:1313/assets/proxy/frank.gif&#34; title=&#34;/assets/proxy/frank.gif&#34; data-thumbnail=&#34;/assets/proxy/frank.gif&#34;&gt;&#xD;&#xA;        &lt;img&#xD;&#xA;            class=&#34;lazyload&#34;&#xD;&#xA;            src=&#34;http://localhost:1313/svg/loading.min.svg&#34;&#xD;&#xA;            data-src=&#34;http://localhost:1313/assets/proxy/frank.gif&#34;&#xD;&#xA;            data-srcset=&#34;http://localhost:1313/assets/proxy/frank.gif, http://localhost:1313/assets/proxy/frank.gif 1.5x, http://localhost:1313/assets/proxy/frank.gif 2x&#34;&#xD;&#xA;            data-sizes=&#34;auto&#34;&#xD;&#xA;            alt=&#34;/assets/proxy/frank.gif&#34; width=&#34;400&#34; /&gt;&#xD;&#xA;    &lt;/a&gt;&#xA;&lt;p&gt;This article will show how to ensure that we have access to the tools that we want after gaining access to a victim system.&lt;/p&gt;&#xA;&lt;p&gt;This article will use four systems - the victim system (ssh &amp;amp; internet enabled), an Azure Kali CLI VM with a publicly accessible IP, our personal Kali VM with a private IP, and our personal Windows VM with a private IP.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My coolest finds</title>
+      <link>http://localhost:1313/articles/my-coolest-finds/</link>
+      <pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/articles/my-coolest-finds/</guid>
+      <description>&lt;p&gt;This article will serve to display some of my favorite finds while on pentests, lack of detail is intentional and high level for confidentiality reasons.&lt;/p&gt;&#xA;&lt;h2 id=&#34;external&#34;&gt;External&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Identified GraphQL endpoint with introspection enabled allowing for GraphQL queries to an endpoint providing a SalesForce JWT allowing access to SalesForce API.&lt;/li&gt;&#xA;&lt;li&gt;Identified a /token endpoint providing a SAP Concur access_token allowing access to the SAP Concur API.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
   </channel>
 </rss>
